@@ -32,9 +32,8 @@ input {
 }
 
 .form-container {
-    align-items: center;
-    max-width: 500px;
-    padding: 15px;
+    max-width: 400px;
+    padding: 20px;
     box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: #fefefe;
     margin: 5% auto 10% auto;
