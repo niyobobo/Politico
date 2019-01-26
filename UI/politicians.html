@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin - Government</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <div id="mySidenav" class="side-nav">
+            <a href="admin.html"><img src="img/vote.png" class="nav-header"></a>
+        <ul>
+            <li></i><a href="admin.html">Political Party</a></li>
+            <li></i><a href="governmentOffice.html">Government Office</a></li>
+            <li></i><a class="active" href="politicians.html">Politicians</a></li>
+            <li></i><a href="user.html">User</a></li>
+        </ul>
+    </div>
+
+    <div id="main" class="container">
+
+        <div class="top-navbar">
+            <a onclick="controlNavigation()"><img width="30px" height="30px" src="img/menu.png" alt="profile" /></a>
+            <a href="index.html" style="float:right"><img width="30px" height="30px" src="img/logout.png" alt="profile" /></a>
+        </div>
+
+        <div class="content">
+            <h2>Available Office</h2>
+            <div class="content-block">
+                <label for="search">Search </label>
+                <input type="text" name="search" id="search" placeholder="Search" />
+                <table class="politico-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Federal</td>
+                        <td>RRA</td>
+                        <td>Kiyovu</td>
+                        <td>+1(000)456-789-123</td>
+                        <td>
+                            <button class="btn-edit" type="submit">Show Interest</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Legislative</td>
+                        <td>MINIJUST</td>
+                        <td>Gishushu</td>
+                        <td>+1(000)456-789-123</td>
+                        <td>
+                            <button class="btn-edit" type="submit">Show Interest</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>Kigali City</td>
+                        <td>Nyarugenge</td>
+                        <td>+1(000)456-789-123</td>
+                        <td>
+                            <button class="btn-edit" type="submit">Show Interest</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Local Government</td>
+                        <td>RISA</td>
+                        <td>Kimihurura</td>
+                        <td>+1(000)456-789-123</td>
+                        <td>
+                            <button class="btn-edit" type="submit">Show Interest</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

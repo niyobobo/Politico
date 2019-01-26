@@ -1,7 +1,8 @@
-
 /* General html element */
 
 body {
+    margin: 0;
+    padding: 0;
     background-color: rgb(226, 224, 224);
 }
 
@@ -23,7 +24,6 @@ label {
 }
 
 input {
-    width: 100%;
     font-size: 13px;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -31,6 +31,20 @@ input {
     border: none;
     box-sizing: border-box;
     background: #f1f1f1;
+}
+
+select {
+    font-size: 15px;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    background: #f1f1f1;
+}
+
+.account {
+    width: 100%;
 }
 
 ul {
@@ -82,15 +96,16 @@ table a {
     background-color: #c93096;
 }
 
-.btn-delete{
+.btn-delete {
     margin: 5px;
     background-color: rgb(223, 77, 77);
 }
 
-.btn-edit{
+.btn-edit {
     margin: 5px;
     background-color: rgb(28, 139, 204);
 }
+
 .user-image {
     display: block;
     width: 150px;
@@ -103,8 +118,7 @@ table a {
     margin: 40px 0 20px 0;
 }
 
-
-.nav-header{
+.nav-header {
     cursor: pointer;
     display: block;
     margin: 0px auto 30px auto;
@@ -112,52 +126,47 @@ table a {
     text-transform: uppercase;
 }
 
-.navigation-side {
+.side-nav {
     height: 100%;
     width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
+    margin: 0;
     background-color: #263544;
     overflow-x: hidden;
-    transition: 0.2s;
+    transition: 0.5s;
     padding-top: 20px;
 }
 
-.navigation-side li a {
+.side-nav li a {
     display: block;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     padding: 15px 16px;
-    color: #818181;
+    color: #e7e7e7;
 }
 
-.navigation-side a:hover {
-    background-color: #1c2531;
+li a:hover:not(.active) {
+    background-color: rgb(255, 255, 255);
+    color: #1b2a3d;
 }
 
-.navigation-side a:hover {
+.side-nav a.active {
+    background-color: #1b2a3d;
     color: #f1f1f1;
 }
 
-.main-content {
-    margin: 0;
+.container {
     padding: 0;
     display: block;
     transition: margin-left .5s;
 }
 
-.main-header {
-    margin-bottom: 30px;
-    padding: 10px;
-    border-radius: 5px;
+.content-block {
+    padding: 20px;
     background-color: white;
-}
-
-.main-header ul li {
-    cursor: pointer;
-    float: left;
 }
 
 .politico-table th {
@@ -168,9 +177,39 @@ table a {
     color: white;
 }
 
-.politico-table img{
+.politico-table img {
     width: 30px;
     height: 30px;
     margin: auto;
     display: block;
+}
+
+.top-navbar {
+    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+}
+
+.top-navbar a {
+    float: left;
+    display: block;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.top-navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.content {
+    padding: 16px;
+    margin-top: 46px;
 }
