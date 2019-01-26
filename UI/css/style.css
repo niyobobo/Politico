@@ -1,10 +1,12 @@
+
+/* General html element */
+
 body {
-    background-color: rgb(214, 170, 211);
+    background-color: rgb(226, 224, 224);
 }
 
 button {
-    width: 100%;
-    text-transform: uppercase;
+    min-width: 100px;
     font-weight: bolder;
     cursor: pointer;
     padding: 15px 15px;
@@ -31,6 +33,39 @@ input {
     background: #f1f1f1;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 15px 10px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table a {
+    text-decoration: none;
+}
+
+/* CSS styling based on element's class */
+
 .form-container {
     max-width: 400px;
     padding: 20px;
@@ -41,11 +76,21 @@ input {
 }
 
 .btn-confirm {
+    width: 100%;
     box-sizing: border-box;
     opacity: 0.8;
     background-color: #c93096;
 }
 
+.btn-delete{
+    margin: 5px;
+    background-color: rgb(223, 77, 77);
+}
+
+.btn-edit{
+    margin: 5px;
+    background-color: rgb(28, 139, 204);
+}
 .user-image {
     display: block;
     width: 150px;
@@ -56,4 +101,76 @@ input {
 .center {
     text-align: center;
     margin: 40px 0 20px 0;
-  }
+}
+
+
+.nav-header{
+    cursor: pointer;
+    display: block;
+    margin: 0px auto 30px auto;
+    color: white;
+    text-transform: uppercase;
+}
+
+.navigation-side {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #263544;
+    overflow-x: hidden;
+    transition: 0.2s;
+    padding-top: 20px;
+}
+
+.navigation-side li a {
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 16px;
+    color: #818181;
+}
+
+.navigation-side a:hover {
+    background-color: #1c2531;
+}
+
+.navigation-side a:hover {
+    color: #f1f1f1;
+}
+
+.main-content {
+    margin: 0;
+    padding: 0;
+    display: block;
+    transition: margin-left .5s;
+}
+
+.main-header {
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.main-header ul li {
+    cursor: pointer;
+    float: left;
+}
+
+.politico-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #263544;
+    color: white;
+}
+
+.politico-table img{
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    display: block;
+}
