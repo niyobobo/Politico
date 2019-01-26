@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin - Government</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <div id="mySidenav" class="side-nav">
+        <a href="admin.html"><img src="img/vote.png" class="nav-header"></a>
+        <ul>
+            <li></i><a href="admin.html">Political Party</a></li>
+            <li></i><a href="governmentOffice.html">Government Office</a></li>
+            <li></i><a href="politicians.html">Politicians</a></li>
+            <li></i><a class="active" href="user.html">User</a></li>
+        </ul>
+    </div>
+
+    <div id="main" class="container">
+
+        <div class="top-navbar">
+            <a onclick="controlNavigation()"><img width="30px" height="30px" src="img/menu.png" alt="profile" /></a>
+            <a href="userProfile.html"><img width="30px" height="30px" src="img/profile.png" alt="profile" /></a>
+            <a href="index.html" style="float:right"><img width="30px" height="30px" src="img/logout.png" alt="profile" /></a>
+        </div>
+
+        <div class="content">
+            <h2>Government Offices</h2>
+            <div class="content-block">
+                <div>
+                    <h2>Political Parties</h2>
+                    <table class="politico-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Logo</th>
+                            <th>Representative</th>
+                            <th>Website</th>
+                        </tr>
+                        <tr>
+                            <td>Democratic</td>
+                            <td><img src="img/democratic.png" alt="democratic"></td>
+                            <td>Tom Perez</td>
+                            <td><a href="https://democrats.org/" target="_new">Democratic</a></td>
+                        </tr>
+                        <tr>
+                            <td>Republican</td>
+                            <td><img src="img/logo.png" alt="Republican"></td>
+                            <td>Ronna McDaniel</td>
+                            <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
+                        </tr>
+                        <tr>
+                            <td>RPF</td>
+                            <td><img src="img/fpr.png" alt="fpr"></td>
+                            <td>Paul Kagame</td>
+                            <td><a href="http://rpfinkotanyi.rw/index.php?id=371" target="_new">RPF</a></td>
+                        </tr>
+                        <tr>
+                            <td>Republican</td>
+                            <td><img src="img/logo.png" alt="Republican"></td>
+                            <td>Ronna McDaniel</td>
+                            <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
+                        </tr>
+                        <tr>
+                            <td>Republican</td>
+                            <td><img src="img/logo.png" alt="Republican"></td>
+                            <td>Ronna McDaniel</td>
+                            <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h2>Politicians</h2>
+                    <table class="politico-table">
+                        <tr>
+                            <th>Office</th>
+                            <th>Politicians</th>
+                            <th>Vote Politician</th>
+                        </tr>
+                        <tr>
+                            <td>RRA</td>
+                            <td>Tom Perez</td>
+                            <td><button class="btn-delete" type="Edit">Vote</button></td>
+                        </tr>
+                        <tr>
+                            <td>MINIJUST</td>
+                            <td>Jean Bosco</td>
+                            <td><button class="btn-delete" type="Edit">Vote</button></td>
+                        </tr>
+                        <tr>
+                            <td>RURA</td>
+                            <td>NIYODUSENGA</td>
+                            <td><button class="btn-delete" type="Edit">Vote</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

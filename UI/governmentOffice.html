@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin panel</title>
+    <title>Admin - Government</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
     <script src="js/main.js"></script>
@@ -15,8 +15,8 @@
     <div id="mySidenav" class="side-nav">
             <a href="admin.html"><img src="img/vote.png" class="nav-header"></a>
         <ul>
-            <li></i><a class="active" href="admin.html">Political Party</a></li>
-            <li></i><a href="governmentOffice.html">Government Office</a></li>
+            <li></i><a href="admin.html">Political Party</a></li>
+            <li></i><a class="active" href="governmentOffice.html">Government Office</a></li>
             <li></i><a href="politicians.html">Politicians</a></li>
             <li></i><a href="user.html">User</a></li>
         </ul>
@@ -26,80 +26,58 @@
 
         <div class="top-navbar">
             <a onclick="controlNavigation()"><img width="30px" height="30px" src="img/menu.png" alt="profile" /></a>
-            <a href="createParty.html"><img width="30px" height="30px" src="img/add.png" alt="profile" /></a>
+            <a href="createOffice.html"><img width="30px" height="30px" src="img/add.png" alt="profile" /></a>
             <a href="index.html" style="float:right"><img width="30px" height="30px" src="img/logout.png" alt="profile" /></a>
         </div>
 
         <div class="content">
-            <h2>Political parties</h2>
+            <h2>Government Offices</h2>
             <div class="content-block">
                 <label for="search">Search </label>
                 <input type="text" name="search" id="search" placeholder="Search" />
                 <table class="politico-table">
                     <tr>
+                        <th>Type</th>
                         <th>Name</th>
-                        <th>HQ Address</th>
-                        <th>Logo</th>
-                        <th>Representative</th>
+                        <th>Location</th>
                         <th>Contact</th>
-                        <th>Website</th>
                         <th>Action</th>
                     </tr>
                     <tr>
-                        <td>Democratic</td>
-                        <td>Washington, D.C.</td>
-                        <td><img src="img/democratic.png" alt="democratic"></td>
-                        <td>Tom Perez</td>
+                        <td>Federal</td>
+                        <td>RRA</td>
+                        <td>Kiyovu</td>
                         <td>+1(000)456-789-123</td>
-                        <td><a href="https://democrats.org/" target="_new">Democratic</a></td>
                         <td>
                             <button class="btn-delete" type="submit">Delete</button>
                             <button class="btn-edit" type="Edit">Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Republican</td>
-                        <td>310 First Street SE</td>
-                        <td><img src="img/logo.png" alt="Republican"></td>
-                        <td>Ronna McDaniel</td>
+                        <td>Legislative</td>
+                        <td>MINIJUST</td>
+                        <td>Gishushu</td>
                         <td>+1(000)456-789-123</td>
-                        <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
                         <td>
                             <button class="btn-delete" type="submit">Delete</button>
                             <button class="btn-edit" type="Edit">Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>RPF</td>
-                        <td>Kigali</td>
-                        <td><img src="img/fpr.png" alt="fpr"></td>
-                        <td>Paul Kagame</td>
+                        <td>State</td>
+                        <td>Kigali City</td>
+                        <td>Nyarugenge</td>
                         <td>+1(000)456-789-123</td>
-                        <td><a href="http://rpfinkotanyi.rw/index.php?id=371" target="_new">RPF</a></td>
                         <td>
                             <button class="btn-delete" type="submit">Delete</button>
                             <button class="btn-edit" type="Edit">Edit</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>Republican</td>
-                        <td>310 First Street SE</td>
-                        <td><img src="img/logo.png" alt="Republican"></td>
-                        <td>Ronna McDaniel</td>
+                        <td>Local Government</td>
+                        <td>RISA</td>
+                        <td>Kimihurura</td>
                         <td>+1(000)456-789-123</td>
-                        <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
-                        <td>
-                            <button class="btn-delete" type="submit">Delete</button>
-                            <button class="btn-edit" type="Edit">Edit</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Republican</td>
-                        <td>310 First Street SE</td>
-                        <td><img src="img/logo.png" alt="Republican"></td>
-                        <td>Ronna McDaniel</td>
-                        <td>+1(000)456-789-123</td>
-                        <td><a href="https://www.gop.com/" target="_new">GOP</a></td>
                         <td>
                             <button class="btn-delete" type="submit">Delete</button>
                             <button class="btn-edit" type="Edit">Edit</button>
