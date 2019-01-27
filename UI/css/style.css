@@ -7,7 +7,7 @@ body {
 }
 
 button {
-    min-width: 100px;
+    min-width: 80px;
     font-weight: bolder;
     cursor: pointer;
     padding: 15px 15px;
@@ -54,10 +54,14 @@ ul {
     overflow: hidden;
 }
 
-
 table {
     width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
     border-collapse: collapse;
+    overflow-x: auto;
+    word-break: break-all;
 }
 
 table td,
@@ -118,17 +122,9 @@ table a {
     margin: 40px 0 20px 0;
 }
 
-.nav-header {
-    cursor: pointer;
-    display: block;
-    margin: 0px auto 30px auto;
-    color: white;
-    text-transform: uppercase;
-}
-
 .side-nav {
     height: 100%;
-    width: 0;
+    width: 250px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -138,6 +134,12 @@ table a {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 20px;
+}
+
+.side-nav-image {
+    cursor: pointer;
+    margin: 0px auto 30px auto;
+    display: block;
 }
 
 .side-nav li a {
@@ -160,11 +162,36 @@ li a:hover:not(.active) {
 
 .container {
     padding: 0;
+    width: auto;
+    margin-left: 250px;
+}
+
+.top-navbar {
+    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
     display: block;
-    transition: margin-left .5s;
+    overflow: hidden;
+    background-color: white;
+}
+
+.top-navbar a {
+    float: left;
+    display: block;
+    cursor: pointer;
+    padding: 14px 16px;
+}
+
+.top-navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.content {
+    display: block;
+    padding: 0px 15px 15px 15px;
 }
 
 .content-block {
+    display: block;
     padding: 20px;
     background-color: white;
 }
@@ -180,36 +207,21 @@ li a:hover:not(.active) {
 .politico-table img {
     width: 30px;
     height: 30px;
-    margin: auto;
-    display: block;
-}
-
-.top-navbar {
-    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    overflow: hidden;
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    top: 0;
-}
-
-.top-navbar a {
+    margin: 10px;
     float: left;
-    display: block;
-    color: black;
     cursor: pointer;
+    display: block;
+}
+
+.user-info {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    font-family: arial;
 }
 
-.top-navbar a:hover {
-    background: #ddd;
-    color: black;
-}
-
-.content {
-    padding: 16px;
-    margin-top: 46px;
+.user-image img {
+    max-width: 100;
 }
