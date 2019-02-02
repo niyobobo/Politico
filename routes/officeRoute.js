@@ -3,13 +3,13 @@ const express = require('express'),
     route = express.Router();
 
 //Create a ​ political office
-route.post('/', officeController);
+route.post('/', officeController.createPoliticalOffice);
 
 //Fetch all ​ political offices records.
-route.get('/', officeController);
+route.get('/', officeController.getAllPoliticalOffices);
 
 //Fetch a specific political office record.
-route.get('/:id', officeController);
+route.get('/:id', officeController.getSpecificPoliticalOffice);
 
 
 module.exports = route;
