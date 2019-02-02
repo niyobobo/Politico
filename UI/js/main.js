@@ -10,3 +10,6 @@ function controlNavigation() {
     
     is_opened = !is_opened;
 }
+
+var nav_width = side_nav.style.getPropertyValue("width");
+var cont_margin = main_container.style.getPropertyValue("margin-left")
