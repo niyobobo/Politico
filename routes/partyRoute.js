@@ -9,7 +9,7 @@ route.post('/', partyController.createPoliticalPary);
 route.get('/', partyController.getAllPoliticalPary);
 
 //Fetch a specific political party​ record.
-route.get('/:id', partyController.getSinglePoliticalPary);
+route.get('/:id', partyController.getSinglePoliticalParty);
 
 //Edit the name of a specific ​ political party
 route.patch('/:id/name', partyController.editPoliticalPary);
