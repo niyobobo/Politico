@@ -225,3 +225,34 @@ li a:hover:not(.active) {
 .user-image img {
     max-width: 100;
 }
+
+@media only screen and (max-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    table,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding: 20px;
+    }
+
+    .container {
+        margin-left: 0px;
+    }
+
+    .side-nav {
+        width: 0px;
+    }
+}
