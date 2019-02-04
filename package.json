@@ -1,0 +1,16 @@
+{
+  "name": "politico-api",
+  "version": "1.0.0",
+  "description": "API That that connects politico web-application to the back-end ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Niyodusenga Jean Bosco",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "morgan": "^1.9.1"
+  }
+}
