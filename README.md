@@ -2,21 +2,21 @@
 
 [![Build Status](https://travis-ci.org/niyobobo/Politico.svg?branch=)](https://travis-ci.org/niyobobo/Politico) [![Coverage Status](https://coveralls.io/repos/github/niyobobo/Politico/badge.svg?branch=ft-api)](https://coveralls.io/github/niyobobo/Politico?branch=ft-api) [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/niyobobo/Politico)
 
-### Github-page ###
+# Github-page
 GitHub page (gh-page) of this project accessed using this link [Politico](https://niyobobo.github.io/Politico/)  For data validation purpose make sure your provide a dummy information in field of `email and password` (when requested) to continue to be able to view other pages.
 
-### Technology ###
+# Technology
 * `NodeJs` Runtime environment that helps to run JavaScript not only in the browser even on the server.
 * `Express` NodeJS framework used for making the back-end.
 * `Git` For code versioning.
 * `Joi` and `Morgan` API request body error validation and HTTP Request logger respectively.
 
-### Application ###
+# Application
 For running and testing application. You run the following npm scripts
 * `npm start` for starting the server.
 * `npm test` for running the tests.
 
-### API
+# API
 
 * POST `/api/v1/offices` Creating a political office.
 * GET `/api/v1/offices` Retreiving all political offices. 

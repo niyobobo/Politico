@@ -1,0 +1,259 @@
+/* General html element */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(226, 224, 224);
+}
+
+button {
+    min-width: 80px;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 15px 15px;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    opacity: 2;
+}
+
+label {
+    font-weight: bold
+}
+
+input {
+    font-size: 13px;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    background: #f1f1f1;
+}
+
+select {
+    font-size: 15px;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    background: #f1f1f1;
+}
+
+.account {
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 15px 10px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table a {
+    text-decoration: none;
+}
+
+/* CSS styling based on element's class */
+
+.form-container {
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #fefefe;
+    margin: 5% auto 10% auto;
+    width: 70%;
+}
+
+.btn-confirm {
+    width: 100%;
+    box-sizing: border-box;
+    opacity: 0.8;
+    background-color: #c93096;
+}
+
+.btn-delete {
+    margin: 5px;
+    background-color: rgb(223, 77, 77);
+}
+
+.btn-edit {
+    margin: 5px;
+    background-color: rgb(28, 139, 204);
+}
+
+.user-image {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto 70px auto;
+}
+
+.center {
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+.side-nav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin: 0;
+    background-color: #263544;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+}
+
+.side-nav-image {
+    cursor: pointer;
+    margin: 0px auto 30px auto;
+    display: block;
+}
+
+.side-nav li a {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 16px;
+    color: #e7e7e7;
+}
+
+li a:hover:not(.active) {
+    background-color: rgb(255, 255, 255);
+    color: #1b2a3d;
+}
+
+.side-nav a.active {
+    background-color: #1b2a3d;
+    color: #f1f1f1;
+}
+
+.container {
+    padding: 0;
+    width: auto;
+    margin-left: 250px;
+}
+
+.top-navbar {
+    box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    overflow: hidden;
+    background-color: white;
+}
+
+.top-navbar a {
+    float: left;
+    display: block;
+    cursor: pointer;
+    padding: 14px 16px;
+}
+
+.top-navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.content {
+    display: block;
+    padding: 0px 15px 15px 15px;
+}
+
+.content-block {
+    display: block;
+    padding: 20px;
+    background-color: white;
+}
+
+.politico-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #263544;
+    color: white;
+}
+
+.politico-table img {
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    float: left;
+    cursor: pointer;
+    display: block;
+}
+
+.user-info {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    font-family: arial;
+}
+
+.user-image img {
+    max-width: 100;
+}
+
+
+@media only screen and (max-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    table,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding: 20px;
+    }
+
+    .container {
+        margin-left: 0px;
+    }
+
+    .side-nav {
+        width: 0px;
+    }
+}
