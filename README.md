@@ -18,12 +18,12 @@ For running and testing application. You run the following npm scripts
 
 ### API
 
-POST `/api/v1/offices` Creating a political office.
-GET `/api/v1/offices` Retreiving all political offices. 
-GET `/api/v1/offices/<id>` Getting a political office for a specific id.
+* POST `/api/v1/offices` Creating a political office.
+* GET `/api/v1/offices` Retreiving all political offices. 
+* GET `/api/v1/offices/<id>` Getting a political office for a specific id.
 
-POST `/api/v1/parties` Create a political party.
-GET `/api/v1/parties` Get all political parties.
-GET `/api/v1/parties/<id>` Get a specific political party.
-PATCH `/api/v1/parties/<id>/name` Edit a specific political party.
-DELETE `/api/v1/parties/<id>` Delete a particular party.
+* POST `/api/v1/parties` Create a political party.
+* GET `/api/v1/parties` Get all political parties.
+* GET `/api/v1/parties/<id>` Get a specific political party.
+* PATCH `/api/v1/parties/<id>/name` Edit a specific political party.
+* DELETE `/api/v1/parties/<id>` Delete a particular party.
