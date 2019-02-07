@@ -3,3 +3,5 @@ node_js:
 - node
 
 script: echo "CI is running......"
+after_sript:
+- npm test
