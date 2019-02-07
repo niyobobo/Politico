@@ -3,3 +3,6 @@ node_js:
 - node
 
 script: echo "CI is running......"
+
+after_success:
+- npm run cover

@@ -8,7 +8,8 @@
     "url": "git://github.com/niyobobo/Politico.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "mocha",
+    "cover": "istanbul cover _mocha"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
@@ -25,7 +26,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "jest": "^24.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0"
   }
