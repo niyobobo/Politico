@@ -1,15 +1,10 @@
-const express = require('express'),
-    officeController = require('../controllers/officeController'),
-    route = express.Router();
+const express = require('express');
+const officeController = require('../controllers/officeController');
 
-//Create a ​ political office
+const route = express.Router();
+
 route.post('/', officeController.createPoliticalOffice);
-
-//Fetch all ​ political offices records.
 route.get('/', officeController.getAllPoliticalOffices);
-
-//Fetch a specific political office record.
 route.get('/:id', officeController.getSpecificPoliticalOffice);
-
 
 module.exports = route;

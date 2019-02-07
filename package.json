@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "API That that connects politico web-application to the back-end ",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/niyobobo/Politico.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js",
+    "test": "NODE_ENV=test mocha"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
@@ -12,5 +17,20 @@
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "chai-things": "^0.2.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.1.0",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0"
   }
 }
