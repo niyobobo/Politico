@@ -57,7 +57,7 @@ class PoliticalOffice {
   }
 
   static getSpecificPoliticalOffice(req, res) {
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     if (!Number(id)) {
       return res.status(400).send({

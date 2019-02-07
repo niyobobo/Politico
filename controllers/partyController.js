@@ -15,7 +15,7 @@ class PoliticalParty {
     const schema = joi.object().keys({
       name: joi.string().min(3).max(50).required(),
       hqAddress: joi.string().min(3).max(50).required(),
-      logoUrl: joi.string().min(3).max(50).required(),
+      logoUrl: joi.string().min(3).max(500).required(),
       representative: joi.string().min(3).max(50).required(),
       contact: joi.string().min(3).max(50).required(),
       website: joi.string().min(3).max(50).required(),
@@ -62,7 +62,7 @@ class PoliticalParty {
   }
 
   static getSinglePoliticalParty(req, res) {
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     if (!Number(id)) {
       return res.status(400).send({
@@ -86,7 +86,7 @@ class PoliticalParty {
   }
 
   static editPoliticalPary(req, res) {
-    const { id } = req.params.id;
+    const { id } = req.params;
     const {
       name,
     } = req.body;
@@ -127,12 +127,12 @@ class PoliticalParty {
     partyData[index].name = name;
     return res.status(200).send({
       status: res.statusCode,
-      data: partyData[index],
+      data: [partyData[index]],
     });
   }
 
   static deletePoliticalPary(req, res) {
-    const { id } = req.params.id;
+    const { id } = req.params;
 
     if (!Number(id)) {
       return res.status(400).send({
