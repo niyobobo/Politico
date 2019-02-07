@@ -1,1 +1,1 @@
-echo ‘web: nodemon app.js’ >Procfile
+web: node app.js
