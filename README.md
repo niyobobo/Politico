@@ -27,3 +27,7 @@ For running and testing application. You run the following npm scripts
 * GET `/api/v1/parties/<id>` Get a specific political party.
 * PATCH `/api/v1/parties/<id>/name` Edit a specific political party.
 * DELETE `/api/v1/parties/<id>` Delete a particular party.
+
+# Heroku
+
+Access link : [HerokuServer](https://agile-citadel-73624.herokuapp.com/). You can even test the above API using this roo URL concatenated with the above mentioned end point.
