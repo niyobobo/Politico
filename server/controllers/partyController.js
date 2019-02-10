@@ -1,5 +1,5 @@
-const joi = require('joi');
-const partyData = require('../data/partySampleData');
+import joi from 'joi';
+import partyData from '../data/partySampleData';
 
 class PoliticalParty {
   static createPoliticalPary(req, res) {
@@ -64,14 +64,14 @@ class PoliticalParty {
   static getSinglePoliticalParty(req, res) {
     const { id } = req.params;
 
-    if (!Number(id)) {
+    if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'ID should be an Integer value',
       });
     }
 
-    const record = partyData.filter(item => item.id === Number(id));
+    const record = partyData.filter(item => item.id === parseInt(id));
     if (record === undefined) {
       return res.status(404).send({
         status: res.statusCode,
@@ -91,7 +91,7 @@ class PoliticalParty {
       name,
     } = req.body;
 
-    if (!Number(id)) {
+    if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'ID should be an Integer value',
@@ -116,7 +116,7 @@ class PoliticalParty {
       });
     }
 
-    const index = partyData.findIndex(item => item.id === Number(id));
+    const index = partyData.findIndex(item => item.id === parseInt(id));
     if (index === -1) {
       return res.status(404).send({
         status: res.statusCode,
@@ -134,14 +134,14 @@ class PoliticalParty {
   static deletePoliticalPary(req, res) {
     const { id } = req.params;
 
-    if (!Number(id)) {
+    if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'ID should be an Integer value',
       });
     }
 
-    const index = partyData.findIndex(item => item.id === Number(id));
+    const index = partyData.findIndex(item => item.id === parseInt(id));
     if (index === -1) {
       return res.status(404).send({
         status: res.statusCode,
@@ -159,4 +159,4 @@ class PoliticalParty {
   }
 }
 
-module.exports = PoliticalParty;
+export default PoliticalParty;

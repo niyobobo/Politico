@@ -27,4 +27,4 @@ const parties = [{
   created_at: '2019-02-02T18:34:36.284Z',
 }];
 
-module.exports = parties;
+export default parties;

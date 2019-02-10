@@ -2,14 +2,14 @@
   "name": "politico-api",
   "version": "1.0.0",
   "description": "API That that connects politico web-application to the back-end ",
-  "main": "app.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/niyobobo/Politico.git"
   },
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha server/tests/* --compilers js:babel-register",
+    "start": "nodemon server/index.js --exec babel-node --presets es2015"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
@@ -19,6 +19,9 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "chai-things": "^0.2.0",
