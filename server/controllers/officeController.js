@@ -1,5 +1,5 @@
-const joi = require('joi');
-const officeData = require('../data/officeSampleData');
+import joi from 'joi';
+import officeData from '../data/officeSampleData';
 
 class PoliticalOffice {
   static createPoliticalOffice(req, res) {
@@ -59,14 +59,14 @@ class PoliticalOffice {
   static getSpecificPoliticalOffice(req, res) {
     const { id } = req.params;
 
-    if (!Number(id)) {
+    if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'ID should be an integer',
       });
     }
 
-    const office = officeData.filter(item => item.id === Number(id));
+    const office = officeData.filter(item => item.id === parseInt(id));
 
     if (office === undefined) {
       return res.status(404).send({
@@ -82,4 +82,4 @@ class PoliticalOffice {
   }
 }
 
-module.exports = PoliticalOffice;
+export default PoliticalOffice;
