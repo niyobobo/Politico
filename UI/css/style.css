@@ -226,6 +226,15 @@ li a:hover:not(.active) {
     max-width: 100;
 }
 
+label.no_bold {
+    display: inline-block;
+    min-width: 180px;
+}
+
+label.content{
+    font-weight: normal;
+}
+
 
 @media only screen and (max-width: 1024px) {
 
