@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create Office</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <div id="mySidenav" class="side-nav">
+            <a href="admin.html"><img src="img/vote.png" class="side-nav-image"></a>
+        <ul>
+            <li></i><a href="admin.html">Political Party</a></li>
+            <li></i><a href="governmentOffice.html">Government Office</a></li>
+            <li></i><a href="politicians.html">Politician interest</a></li>
+            <li></i><a href="user.html">User</a></li>
+        </ul>
+    </div>
+
+    <div id="main" class="container">
+
+        <div class="top-navbar">
+            <a onclick="controlNavigation()"><img width="30px" height="30px" src="img/menu.png" alt="profile" /></a>
+            <a href="index.html" style="float:right"><img width="30px" height="30px" src="img/logout.png" alt="profile" /></a>
+        </div>
+
+        <div class="content">
+            <h2>Create Government Office</h2>
+            <div class="content-block">
+                <form class="modal-content">
+                    <div>
+                        <label for="party_name">Type</label>
+                        <select class="account" name="select" id="select">
+                            <option value="State">State</option>
+                            <option value="Legislative">Legislative</option>
+                            <option value="Federal">Federal</option>
+                            <option value="Local Government">Local Government</option>
+                        </select>
+
+                        <label for="address">Name</label>
+                        <input class="account" type="text" placeholder="Enter Office" name="name" required>
+
+                        <label for="logo">Location</label>
+                        <input class="account" type="text" placeholder="Enter location" name="location">
+
+                        <label for="contact">Contact</label>
+                        <input class="account" type="text" placeholder="Phone" name="contact" required>
+
+                        <button class="btn-confirm" type="submit" class="signupbtn">Create Office</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
