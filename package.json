@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register server/tests/*",
-    "start": "nodemon --exec babel-node ./server/index.js"
+    "start": "nodemon --exec babel-node server/index.js",
+    "heroku":"babel-node ./server/index.js"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
