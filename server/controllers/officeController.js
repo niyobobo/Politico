@@ -14,7 +14,7 @@ class PoliticalOffice {
       type: joi.string().min(3).required(),
       name: joi.string().min(3).required(),
       location: joi.string().min(3).max(50).required(),
-      contact: joi.required(),
+      contact: joi.string().regex(/^(07)(\d{8})/).length(10).required(),
     });
 
     const validationError = joi.validate(req.body, schema, {
@@ -41,6 +41,15 @@ class PoliticalOffice {
       contact,
       created_at: new Date(),
     };
+
+    const record = officeData.find(item => item.contact === contact);
+    if (record != undefined) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: 'This office is already registered',
+      });
+    }
+
 
     officeData.push(data);
     return res.status(201).send({

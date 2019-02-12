@@ -34,8 +34,8 @@ describe('Political Parties end-point tests result', () => {
       hqAddress: 'Washington, D.C.',
       logoUrl: 'https://www.stjoedemocrats.org/wp-content/uploads/2017/09/D-Logo-Only-small-300x230.jpg',
       representative: 'Tom Perez',
-      contact: '+1(000)456-789-123',
-      website: 'https://democrats.org/',
+      contact: '0783282834',
+      website: 'https://democrat.org/',
     };
 
     chai.request(app)

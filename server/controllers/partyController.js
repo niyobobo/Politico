@@ -2,7 +2,7 @@ import joi from 'joi';
 import partyData from '../data/partySampleData';
 
 class PoliticalParty {
-  static createPoliticalPary(req, res) {
+  static createPoliticalParty(req, res) {
     const {
       name,
       hqAddress,
@@ -17,7 +17,7 @@ class PoliticalParty {
       hqAddress: joi.string().min(3).max(50).required(),
       logoUrl: joi.string().min(3).max(500).required(),
       representative: joi.string().min(3).max(50).required(),
-      contact: joi.string().min(3).max(50).required(),
+      contact: joi.string().regex(/^(07)(\d{8})/).length(10).required(),
       website: joi.string().min(3).max(50).required(),
     });
 
@@ -47,6 +47,14 @@ class PoliticalParty {
       created_at: new Date(),
     };
 
+    const record = partyData.find(item => item.website === website);
+    if (record != undefined) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: 'This party is already registered',
+      });
+    }
+
     partyData.push(party);
     return res.status(201).send({
       status: res.statusCode,
@@ -54,7 +62,7 @@ class PoliticalParty {
     });
   }
 
-  static getAllPoliticalPary(req, res) {
+  static getAllPoliticalParty(req, res) {
     return res.status(200).send({
       status: res.statusCode,
       data: partyData,
@@ -85,7 +93,7 @@ class PoliticalParty {
     });
   }
 
-  static editPoliticalPary(req, res) {
+  static editPoliticalParty(req, res) {
     const { id } = req.params;
     const {
       name,
@@ -131,7 +139,7 @@ class PoliticalParty {
     });
   }
 
-  static deletePoliticalPary(req, res) {
+  static deletePoliticalParty(req, res) {
     const { id } = req.params;
 
     if (!parseInt(id)) {

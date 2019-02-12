@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <div id="mySidenav" class="side-nav">
+        <a href="admin.html"><img src="img/vote.png" class="side-nav-image"></a>
+        <ul>
+            <li></i><a href="admin.html">Political Party</a></li>
+            <li></i><a href="governmentOffice.html">Government Office</a></li>
+            <li></i><a href="politicians.html">Politician interest</a></li>
+            <li></i><a href="user.html">User</a></li>
+        </ul>
+    </div>
+
+    <div id="main" class="container">
+
+        <div class="top-navbar">
+            <a onclick="controlNavigation()"><img width="30px" height="30px" src="img/menu.png" alt="profile" /></a>
+            <a href="index.html" style="float:right"><img width="30px" height="30px" src="img/logout.png" alt="profile" /></a>
+        </div>
+
+        <div class="content">
+            <h2>Edit a Political party</h2>
+            <div class="content-block">
+                <form class="modal-content">
+                    <div>
+                        <p>
+                            <label class="no_bold" for="party_name">Party Name:</label> <label  id="party_name">Democratic</label>
+                        </p>
+                        <p>
+                            <label class="no_bold" for="party_name">Physical Address:</label> <label>Washington, D.C.</label>
+                        </p>
+
+                        <p>
+                            <label class="no_bold" for="party_name">Representative:</label> <label>Tom Perez</label>
+                        </p>
+                        <p>
+                            <label class="no_bold" for="party_name">Telephone:</label> <label>+1(000)456-789-123</label>
+                        </p>
+                        <p>
+                            <label class="no_bold" for="party_name">Website:</label> <label><a href="https://democrats.org/" target="_new">Democratic</a></label>
+                        </p>
+                        <p>
+                            <label class="no_bold" for="party_name">Logo:</label> <img src="img/democratic.png" alt="democratic" height="50px" >
+                        </p> <br><br>
+                        <label for="party_name">Edit party name</label>
+                        <input class="account" type="text" placeholder="Enter party name" name="party_name" required>
+
+
+                        <button class="btn-confirm" type="submit" class="signupbtn">Update</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
