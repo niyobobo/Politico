@@ -42,7 +42,6 @@ describe('Political Parties end-point tests result', () => {
       .post('/api/v1/parties')
       .send(party)
       .end((_err, res) => {
-        console.log(res.body);
         res.body.should.be.a('object');
         res.body.should.have.property('status');
         res.body.should.have.property('data');
