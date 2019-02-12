@@ -2,13 +2,13 @@
 
 [![Build Status](https://travis-ci.org/niyobobo/Politico.svg?branch=)](https://travis-ci.org/niyobobo/Politico) [![Coverage Status](https://coveralls.io/repos/github/niyobobo/Politico/badge.svg?branch=ft-api)](https://coveralls.io/github/niyobobo/Politico?branch=ft-api) [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/niyobobo/Politico)
 
-#Description
+# Description
 
 <p>Politico Web Application enables citizens to give their mandate to politicians running for different government offices while building trust in the process through transparency and For another hand there are all the functionality that an administrator could need in order to control the system. Administrator can be able to make all the CRUD operation on each entity (Political party or Governement office).</p> 
 
 <p>On the user side User can show his/her vote a Politian who want to run a certain governement office. And each Politician can express his/her interest to run a certain government office</p>
 
-#Setup
+# Setup
 - You need to have `git`, `NodeJS` and `nmp` installed on your local environment.
 - Clone the application with `git clone` command.
 - `npm install` to install all the dependencies in local environment
