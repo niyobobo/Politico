@@ -31,7 +31,7 @@ describe('Offices end-point tests result', () => {
       type: 'Fedelal',
       name: 'RRA',
       location: 'Kiyovu',
-      contact: '+1(000)456-789-123',
+      contact: '0783282834',
     };
 
     chai.request(app)
