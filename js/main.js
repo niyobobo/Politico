@@ -1,12 +1,12 @@
-var is_opened = true;
+let isOpened = true;
 
-function controlNavigation() {
-    var side_nav = document.getElementById("mySidenav");
-    var main_container = document.getElementById("main");
+const controlNavigation = () => {
+  const sideNav = document.getElementById('mySidenav');
+  const mainContainer = document.getElementById('main');
 
-    side_nav.style.width = !is_opened ? "250px" : "0";
-    main_container.style.marginLeft = !is_opened ? "250px" : "0";
-    main_container.style.transition = "margin-left .5s";
-    
-    is_opened = !is_opened;
-}
+  sideNav.style.width = !isOpened ? '250px' : '0';
+  mainContainer.style.marginLeft = !isOpened ? '250px' : '0';
+  mainContainer.style.transition = 'margin-left .5s';
+
+  isOpened = !isOpened;
+};
