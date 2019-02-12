@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(morgan('short'));
 app.use(express.json());
-app.use(express.static('../UI'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(officeRoute);
