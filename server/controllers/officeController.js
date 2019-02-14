@@ -24,7 +24,7 @@ class PoliticalOffice {
     if (validationError.error != null) {
       const errors = [];
       for (let index = 0; index < validationError.error.details.length; index++) {
-        errors.push(validationError.error.details[index].message);
+        errors.push(validationError.error.details[index].message.split('"').join(''));
       }
 
       return res.status(400).send({

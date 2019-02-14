@@ -28,7 +28,7 @@ class PoliticalParty {
     if (validation.error != null) {
       const errors = [];
       for (let i = 0; i < validation.error.details.length; i++) {
-        errors.push(validation.error.details[i].message);
+        errors.push(validation.error.details[i].message.split('"').join(''));
       }
       return res.status(400).send({
         status: res.statusCode,
@@ -116,7 +116,7 @@ class PoliticalParty {
     if (validation.error != null) {
       const errors = [];
       for (let i = 0; i < validation.error.details.length; i++) {
-        errors.push(validation.error.details[i].message);
+        errors.push(validation.error.details[i].message.split('"').join(''));
       }
       return res.status(400).send({
         status: res.statusCode,
