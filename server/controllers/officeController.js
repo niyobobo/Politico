@@ -77,7 +77,7 @@ class PoliticalOffice {
 
     const office = officeData.filter(item => item.id === parseInt(id));
 
-    if (office === undefined) {
+    if (office === undefined || office.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'No information found for provided id',

@@ -80,7 +80,7 @@ class PoliticalParty {
     }
 
     const record = partyData.filter(item => item.id === parseInt(id));
-    if (record === undefined) {
+    if (record === undefined || record.length === 0) {
       return res.status(404).send({
         status: res.statusCode,
         error: 'No information found for provided id',
