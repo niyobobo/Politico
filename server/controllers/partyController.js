@@ -1,5 +1,7 @@
 import joi from 'joi';
-import partyData from '../data/partySampleData';
+import uuid from 'uuid';
+import moment from 'moment';
+import queryExecutor from '../database/queryExecutor';
 
 class PoliticalParty {
   static createPoliticalParty(req, res) {
@@ -36,134 +38,32 @@ class PoliticalParty {
       });
     }
 
-    const party = {
-      id: partyData.length + 1,
+    const party = [
+      uuid(),
       name,
       hqAddress,
       logoUrl,
       representative,
       contact,
       website,
-      created_at: new Date(),
-    };
+      moment(new Date()),
+    ];
 
-    const record = partyData.find(item => item.website === website);
-    if (record != undefined) {
+    const query = `INSERT INTO party (party_id, name, hqaddress, logourl, representative, contact, website, created_at)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+
+    try {
+      const { rows } = queryExecutor.query(query, party);
+      return res.status(201).send({
+        status: res.statusCode,
+        data: [rows[0]],
+      });
+    } catch (error) {
       return res.status(400).send({
         status: res.statusCode,
-        error: 'This party is already registered',
+        error: error,
       });
     }
-
-    partyData.push(party);
-    return res.status(201).send({
-      status: res.statusCode,
-      data: [party],
-    });
-  }
-
-  static getAllPoliticalParty(req, res) {
-    return res.status(200).send({
-      status: res.statusCode,
-      data: partyData,
-    });
-  }
-
-  static getSinglePoliticalParty(req, res) {
-    const { id } = req.params;
-
-    if (!parseInt(id)) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: 'ID should be an Integer value',
-      });
-    }
-
-    const record = partyData.filter(item => item.id === parseInt(id));
-    if (record === undefined || record.length === 0) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'No information found for provided id',
-      });
-    }
-
-    return res.status(200).send({
-      status: res.statusCode,
-      data: record,
-    });
-  }
-
-  static editPoliticalParty(req, res) {
-    const { id } = req.params;
-    const {
-      name,
-    } = req.body;
-
-    if (!parseInt(id)) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: 'ID should be an Integer value',
-      });
-    }
-
-    const schema = joi.object().keys({
-      name: joi.string().min(3).max(50).required(),
-    });
-    const validation = joi.validate(req.body, schema, {
-      abortEarly: false,
-    });
-
-    if (validation.error != null) {
-      const errors = [];
-      for (let i = 0; i < validation.error.details.length; i++) {
-        errors.push(validation.error.details[i].message.split('"').join(''));
-      }
-      return res.status(400).send({
-        status: res.statusCode,
-        error: errors,
-      });
-    }
-
-    const index = partyData.findIndex(item => item.id === parseInt(id));
-    if (index === -1) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'No information found for provided id',
-      });
-    }
-
-    partyData[index].name = name;
-    return res.status(200).send({
-      status: res.statusCode,
-      data: [partyData[index]],
-    });
-  }
-
-  static deletePoliticalParty(req, res) {
-    const { id } = req.params;
-
-    if (!parseInt(id)) {
-      return res.status(400).send({
-        status: res.statusCode,
-        error: 'ID should be an Integer value',
-      });
-    }
-
-    const index = partyData.findIndex(item => item.id === parseInt(id));
-    if (index === -1) {
-      return res.status(404).send({
-        status: res.statusCode,
-        error: 'No information found for provided id',
-      });
-    }
-
-    partyData.splice(index, 1);
-    return res.status(200).send({
-      status: res.statusCode,
-      data: [{
-        message: 'Party deleted successfuly',
-      }],
-    });
   }
 }
 
