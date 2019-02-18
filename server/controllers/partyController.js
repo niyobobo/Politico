@@ -1,10 +1,11 @@
 import joi from 'joi';
-import uuid from 'uuid';
 import moment from 'moment';
-import queryExecutor from '../database/queryExecutor';
+import queries from '../database/queries';
+import executor from '../database/queryExecutor';
 
-class PoliticalParty {
-  static createPoliticalParty(req, res) {
+const politicalParty = {
+
+  async createPoliticalParty(req, res) {
     const {
       name,
       hqAddress,
@@ -39,7 +40,6 @@ class PoliticalParty {
     }
 
     const party = [
-      uuid(),
       name,
       hqAddress,
       logoUrl,
@@ -49,22 +49,155 @@ class PoliticalParty {
       moment(new Date()),
     ];
 
-    const query = `INSERT INTO party (party_id, name, hqaddress, logourl, representative, contact, website, created_at)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-
-    try {
-      const { rows } = queryExecutor.query(query, party);
-      return res.status(201).send({
-        status: res.statusCode,
-        data: [rows[0]],
-      });
-    } catch (error) {
+    const { rowCount } = await executor.query(queries.checkIfExist, [contact]);
+    if (rowCount !== 0) {
       return res.status(400).send({
         status: res.statusCode,
-        error: error,
+        error: 'This party is already registered',
+      });
+    }
+
+    try {
+      const resulst = await executor.query(queries.createParty, party);
+      if (resulst.rowCount === 1) {
+        return res.status(201).send({
+          status: res.statusCode,
+          data: resulst.rows,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
+  async getAllPoliticalParty(req, res){
+    try {
+      const { rows } = await executor.query(queries.getAllParty);
+      return res.status(200).send({
+        status: res.statusCode,
+        data: rows,       
+      });
+    } catch (e) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: err,
+      });
+    }
+  },
+
+  async getSinglePoliticalParty(req, res){
+    const { id } = req.params;
+
+    if (!parseInt(id)) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: 'ID should be an Integer value',
+      });
+    }
+
+    try {
+      const { rowCount, rows } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+      return res.status(200).send({
+        status: res.statusCode,
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: error,
+      });
+    }
+  },
+
+  async editPoliticalParty(req, res){
+    const { id } = req.params;
+    const { name } = req.body;
+
+    if (!parseInt(id)) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: 'ID should be an Integer value',
+      });
+    }
+
+    const schema = joi.object().keys({
+      name: joi.string().min(3).max(50).required(),
+    });
+    const validation = joi.validate(req.body, schema, {
+      abortEarly: false,
+    });
+
+    if (validation.error != null) {
+      const errors = [];
+      for (let i = 0; i < validation.error.details.length; i++) {
+        errors.push(validation.error.details[i].message.split('"').join(''));
+      }
+      return res.status(400).send({
+        status: res.statusCode,
+        error: errors,
+      });
+    }
+
+    try {
+      const { rowCount } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+      const { rows } = await executor.query(queries.updateParty, [id, name]);
+      return res.status(200).send({
+        status: res.statusCode,
+        data: rows,
+      });
+    } catch (err) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: err,
+      });
+    }
+  },
+
+  async deletePoliticalParty(req, res){
+    const { id } = req.params;
+
+    if (!parseInt(id)) {
+      return res.status(400).send({
+        status: res.statusCode,
+        error: 'ID should be an Integer value',
+      });
+    }
+
+    try {      
+      const { rowCount } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+
+      await executor.query(queries.deleteParty, [id]);
+      return res.status(200).send({
+        status: res.statusCode,
+        data: [{
+          message: 'Party deleted successfuly',
+        }],
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: error,
       });
     }
   }
 }
 
-export default PoliticalParty;
+export default politicalParty;
