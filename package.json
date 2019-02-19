@@ -12,7 +12,8 @@
     "database": "npm run dropDb && node ./server/database/connection.js createTables ",
     "test": "npm run database && NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
     "start": "nodemon --exec babel-node server/index.js",
-    "heroku": "babel-node ./server/index.js"
+    "heroku": "babel-node ./server/index.js",
+    "jest-test":"npm run database && NODE_ENV=test jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
