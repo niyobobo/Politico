@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import partyRoute from './routes/partyRoute';
 import officeRoute from './routes/officeRoute';
+import userRoute from './routes/userRoute';
 
 require('@babel/register');
 require('@babel/polyfill');
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(officeRoute);
 app.use(partyRoute);
+app.use(userRoute);
 
 app.use('/api/v1', (req, res) => res.status(400).send({
   status: res.statusCode,

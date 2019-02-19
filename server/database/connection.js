@@ -23,7 +23,7 @@ const createTables = () => {
         )`;
 
   const partyTable = `CREATE TABLE IF NOT EXISTS 
-        party (
+        party_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             hqAddress VARCHAR(255) NOT NULL,
@@ -35,7 +35,7 @@ const createTables = () => {
         )`;
 
   const officeTable = `CREATE TABLE IF NOT EXISTS
-        office (
+        office_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             type VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
@@ -44,29 +44,36 @@ const createTables = () => {
             created_at TIMESTAMP
         )`;
   const petitionTable = `CREATE TABLE IF NOT EXISTS 
-        petition (
+        petition_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             createdBy INT NOT NULL,
             office INT NOT NULL,
             body VARCHAR(511) NOT NULL,
-            createdOn TIMESTAMP
+            createdOn TIMESTAMP,
+            FOREIGN KEY (createdBy) REFERENCES user_info (id) ON DELETE CASCADE,
+            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE
         )`;
 
   const voteTable = `CREATE TABLE IF NOT EXISTS 
-        vote (
+        vote_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             createdBy INT NOT NULL,
             office INT NOT NULL,
             candidate VARCHAR(255) NOT NULL,
-            createdOn TIMESTAMP
+            createdOn TIMESTAMP,
+            FOREIGN KEY (createdBy) REFERENCES user_info (id) ON DELETE CASCADE,
+            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE
         )`;
 
   const candidateTable = ` CREATE TABLE IF NOT EXISTS 
-        candidate (
+        candidate_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             office INT NOT NULL,
             party INT NOT NULL,
-            candidate INT NOT NULL
+            candidate INT NOT NULL,
+            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE,
+            FOREIGN KEY (party) REFERENCES party_tb (id) ON DELETE CASCADE,
+            FOREIGN KEY (candidate) REFERENCES user_info (id) ON DELETE CASCADE
         )`;
 
   pool.query(userTable);
