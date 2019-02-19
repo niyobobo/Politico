@@ -12,8 +12,7 @@
     "database": "npm run dropDb && node ./server/database/connection.js createTables ",
     "test": "npm run database && NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
     "start": "nodemon --exec babel-node server/index.js",
-    "heroku": "babel-node ./server/index.js",
-    "jest": "nyc --require @babel/register mocha --require @babel/polyfill server/tests/* --exit -w"
+    "heroku": "babel-node ./server/index.js"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
