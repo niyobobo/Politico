@@ -8,26 +8,6 @@ chai.use(chaihttp);
 chai.use(chaiThing);
 
 describe('Political Parties end-point tests result', () => {
-  it('Should GET all parties', (done) => {
-    chai.request(app)
-      .get('/api/v1/parties')
-      .end((_err, res) => {
-        res.body.should.be.a('object');
-        res.body.should.have.property('status');
-        res.body.should.have.property('data');
-        res.body.data.should.be.a('array');
-        res.body.data.should.all.have.property('id');
-        res.body.data.should.all.have.property('name');
-        res.body.data.should.all.have.property('hqAddress');
-        res.body.data.should.all.have.property('logoUrl');
-        res.body.data.should.all.have.property('representative');
-        res.body.data.should.all.have.property('contact');
-        res.body.data.should.all.have.property('website');
-        res.body.data.should.all.have.property('created_at');
-        done();
-      });
-  });
-
   it('Should POST (Create) a party', (done) => {
     const party = {
       name: 'Democratic',
@@ -47,8 +27,8 @@ describe('Political Parties end-point tests result', () => {
         res.body.should.have.property('data');
         res.body.data.should.be.a('array');
         res.body.data.should.all.have.property('name', party.name);
-        res.body.data.should.all.have.property('hqAddress', party.hqAddress);
-        res.body.data.should.all.have.property('logoUrl', party.logoUrl);
+        res.body.data.should.all.have.property('hqaddress', party.hqAddress);
+        res.body.data.should.all.have.property('logourl', party.logoUrl);
         res.body.data.should.all.have.property('representative', party.representative);
         res.body.data.should.all.have.property('contact', party.contact);
         res.body.data.should.all.have.property('website', party.website);
@@ -56,8 +36,28 @@ describe('Political Parties end-point tests result', () => {
       });
   });
 
+  it('Should GET all parties', (done) => {
+    chai.request(app)
+      .get('/api/v1/parties')
+      .end((_err, res) => {
+        res.body.should.be.a('object');
+        res.body.should.have.property('status');
+        res.body.should.have.property('data');
+        res.body.data.should.be.a('array');
+        res.body.data.should.all.have.property('id');
+        res.body.data.should.all.have.property('name');
+        res.body.data.should.all.have.property('hqaddress');
+        res.body.data.should.all.have.property('logourl');
+        res.body.data.should.all.have.property('representative');
+        res.body.data.should.all.have.property('contact');
+        res.body.data.should.all.have.property('website');
+        res.body.data.should.all.have.property('created_at');
+        done();
+      });
+  });
+
   it('Should GET a party', (done) => {
-    const party = { id: 200 };
+    const party = { id: 1 };
 
     chai.request(app)
       .get('/api/v1/parties/' + party.id + '')
@@ -68,8 +68,8 @@ describe('Political Parties end-point tests result', () => {
         res.body.data.should.be.a('array');
         res.body.data.should.all.have.property('id');
         res.body.data.should.all.have.property('name');
-        res.body.data.should.all.have.property('hqAddress');
-        res.body.data.should.all.have.property('logoUrl');
+        res.body.data.should.all.have.property('hqaddress');
+        res.body.data.should.all.have.property('logourl');
         res.body.data.should.all.have.property('representative');
         res.body.data.should.all.have.property('contact');
         res.body.data.should.all.have.property('website');
@@ -79,7 +79,7 @@ describe('Political Parties end-point tests result', () => {
   });
 
   it('Should UPDATE a party', (done) => {
-    const party = { id: 200 };
+    const party = { id: 1 };
     const name = { name: 'Kigali' };
 
     chai.request(app)
@@ -92,8 +92,8 @@ describe('Political Parties end-point tests result', () => {
         res.body.data.should.be.a('array');
         res.body.data.should.all.have.property('id');
         res.body.data.should.all.have.property('name');
-        res.body.data.should.all.have.property('hqAddress');
-        res.body.data.should.all.have.property('logoUrl');
+        res.body.data.should.all.have.property('hqaddress');
+        res.body.data.should.all.have.property('logourl');
         res.body.data.should.all.have.property('representative');
         res.body.data.should.all.have.property('contact');
         res.body.data.should.all.have.property('website');
@@ -103,7 +103,7 @@ describe('Political Parties end-point tests result', () => {
   });
 
   it('Should DELETE a party', (done) => {
-    const party = { id: 200 };
+    const party = { id: 1 };
 
     chai.request(app)
       .delete('/api/v1/parties/' + party.id + '')

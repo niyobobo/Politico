@@ -3,6 +3,9 @@ import morgan from 'morgan';
 import partyRoute from './routes/partyRoute';
 import officeRoute from './routes/officeRoute';
 
+require('@babel/register');
+require('@babel/polyfill');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 

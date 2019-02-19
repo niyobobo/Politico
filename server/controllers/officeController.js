@@ -111,4 +111,5 @@ const PoliticalOffice = {
   }
 }
 
+"use strict";
 export default PoliticalOffice;
