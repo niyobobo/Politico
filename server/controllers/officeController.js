@@ -1,8 +1,11 @@
 import joi from 'joi';
-import officeData from '../data/officeSampleData';
+import moment from 'moment';
+import queries from '../database/queries';
+import queryExecutor from '../database/queryExecutor';
 
-class PoliticalOffice {
-  static createPoliticalOffice(req, res) {
+const PoliticalOffice = {
+  
+  async createPoliticalOffice(req, res) {
     const {
       type,
       name,
@@ -33,39 +36,51 @@ class PoliticalOffice {
       });
     }
 
-    const data = {
-      id: parseInt(officeData.length + 1),
+    const data = [
       type,
       name,
       location,
       contact,
-      created_at: new Date(),
-    };
+      moment(new Date()),
+    ];
 
-    const record = officeData.find(item => item.contact === contact);
-    if (record != undefined) {
+    const { rowCount } = await queryExecutor.query(queries.checkOfficeExist, [contact]);
+    if (rowCount !== 0) {
       return res.status(400).send({
         status: res.statusCode,
-        error: 'This office is already registered',
+        error: 'This party is already registered',
       });
     }
 
+    try {
+      const resulst = await queryExecutor.query(queries.createOffice, data);
+      if (resulst.rowCount === 1) {
+        return res.status(201).send({
+          status: res.statusCode,
+          data: resulst.rows,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  },
 
-    officeData.push(data);
-    return res.status(201).send({
-      status: res.statusCode,
-      data: [data],
-    });
-  }
+  async getAllPoliticalOffices(req, res) {
+    try {
+      const { rows } = await queryExecutor.query(queries.getAllOffices);
+      return res.status(200).send({
+        status: res.statusCode,
+        data: rows,       
+      });
+    } catch (e) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: err,
+      });
+    }
+  },
 
-  static getAllPoliticalOffices(req, res) {
-    return res.status(200).send({
-      status: res.statusCode,
-      data: officeData,
-    });
-  }
-
-  static getSpecificPoliticalOffice(req, res) {
+  async getSpecificPoliticalOffice(req, res) {
     const { id } = req.params;
 
     if (!parseInt(id)) {
@@ -75,20 +90,26 @@ class PoliticalOffice {
       });
     }
 
-    const office = officeData.filter(item => item.id === parseInt(id));
-
-    if (office === undefined || office.length === 0) {
-      return res.status(404).send({
+    try {
+      const { rowCount, rows } = await queryExecutor.query(queries.getSingleOffice, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+      return res.status(200).send({
         status: res.statusCode,
-        error: 'No information found for provided id',
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: error,
       });
     }
-
-    return res.status(200).send({
-      status: res.statusCode,
-      data: office,
-    });
   }
 }
 
+"use strict";
 export default PoliticalOffice;

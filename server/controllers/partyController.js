@@ -1,8 +1,11 @@
 import joi from 'joi';
-import partyData from '../data/partySampleData';
+import moment from 'moment';
+import queries from '../database/queries';
+import executor from '../database/queryExecutor';
 
-class PoliticalParty {
-  static createPoliticalParty(req, res) {
+const politicalParty = {
+
+  async createPoliticalParty(req, res) {
     const {
       name,
       hqAddress,
@@ -36,40 +39,53 @@ class PoliticalParty {
       });
     }
 
-    const party = {
-      id: partyData.length + 1,
+    const party = [
       name,
       hqAddress,
       logoUrl,
       representative,
       contact,
       website,
-      created_at: new Date(),
-    };
+      moment(new Date()),
+    ];
 
-    const record = partyData.find(item => item.website === website);
-    if (record != undefined) {
+    const { rowCount } = await executor.query(queries.checkIfExist, [contact]);
+    if (rowCount !== 0) {
       return res.status(400).send({
         status: res.statusCode,
         error: 'This party is already registered',
       });
     }
 
-    partyData.push(party);
-    return res.status(201).send({
-      status: res.statusCode,
-      data: [party],
-    });
-  }
+    try {
+      const resulst = await executor.query(queries.createParty, party);
+      if (resulst.rowCount === 1) {
+        return res.status(201).send({
+          status: res.statusCode,
+          data: resulst.rows,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  },
 
-  static getAllPoliticalParty(req, res) {
-    return res.status(200).send({
-      status: res.statusCode,
-      data: partyData,
-    });
-  }
+  async getAllPoliticalParty(req, res){
+    try {
+      const { rows } = await executor.query(queries.getAllParty);
+      return res.status(200).send({
+        status: res.statusCode,
+        data: rows,       
+      });
+    } catch (e) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: err,
+      });
+    }
+  },
 
-  static getSinglePoliticalParty(req, res) {
+  async getSinglePoliticalParty(req, res){
     const { id } = req.params;
 
     if (!parseInt(id)) {
@@ -79,25 +95,29 @@ class PoliticalParty {
       });
     }
 
-    const record = partyData.filter(item => item.id === parseInt(id));
-    if (record === undefined || record.length === 0) {
-      return res.status(404).send({
+    try {
+      const { rowCount, rows } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+      return res.status(200).send({
         status: res.statusCode,
-        error: 'No information found for provided id',
+        data: rows,
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: error,
       });
     }
+  },
 
-    return res.status(200).send({
-      status: res.statusCode,
-      data: record,
-    });
-  }
-
-  static editPoliticalParty(req, res) {
+  async editPoliticalParty(req, res){
     const { id } = req.params;
-    const {
-      name,
-    } = req.body;
+    const { name } = req.body;
 
     if (!parseInt(id)) {
       return res.status(400).send({
@@ -124,22 +144,28 @@ class PoliticalParty {
       });
     }
 
-    const index = partyData.findIndex(item => item.id === parseInt(id));
-    if (index === -1) {
-      return res.status(404).send({
+    try {
+      const { rowCount } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+      const { rows } = await executor.query(queries.updateParty, [id, name]);
+      return res.status(200).send({
         status: res.statusCode,
-        error: 'No information found for provided id',
+        data: rows,
+      });
+    } catch (err) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: err,
       });
     }
+  },
 
-    partyData[index].name = name;
-    return res.status(200).send({
-      status: res.statusCode,
-      data: [partyData[index]],
-    });
-  }
-
-  static deletePoliticalParty(req, res) {
+  async deletePoliticalParty(req, res){
     const { id } = req.params;
 
     if (!parseInt(id)) {
@@ -149,22 +175,31 @@ class PoliticalParty {
       });
     }
 
-    const index = partyData.findIndex(item => item.id === parseInt(id));
-    if (index === -1) {
-      return res.status(404).send({
+    try {      
+      const { rowCount } = await executor.query(queries.getSingleParty, [id]);
+      if (rowCount === 0) {
+        return res.status(404).send({
+          status: res.statusCode,
+          error: 'No information found for provided id',
+        });
+      }
+
+      await executor.query(queries.deleteParty, [id]);
+      return res.status(200).send({
         status: res.statusCode,
-        error: 'No information found for provided id',
+        data: [{
+          message: 'Party deleted successfuly',
+        }],
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: res.statusCode,
+        data: error,
       });
     }
-
-    partyData.splice(index, 1);
-    return res.status(200).send({
-      status: res.statusCode,
-      data: [{
-        message: 'Party deleted successfuly',
-      }],
-    });
   }
 }
 
-export default PoliticalParty;
+"use strict";
+
+export default politicalParty;
