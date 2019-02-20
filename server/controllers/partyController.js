@@ -203,6 +203,4 @@ const politicalParty = {
   }
 }
 
-"use strict";
-
 export default politicalParty;

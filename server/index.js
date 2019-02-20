@@ -1,5 +1,3 @@
-import '@babel/register';
-import '@babel/polyfill';
 import express from 'express';
 import morgan from 'morgan';
 import partyRoute from './routes/partyRoute';
