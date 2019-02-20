@@ -7,7 +7,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 pool.on('connect', () => console.log('Connected to database'));
 
 const createTables = () => {
-  const userTable = `CREATE TABLE IF NOT EXISTS 
+  const createUserTableQuery = `CREATE TABLE IF NOT EXISTS 
         user_info (
             id SERIAL NOT NULL PRIMARY KEY,
             firstname VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ const createTables = () => {
             created_at TIMESTAMP
         )`;
 
-  const partyTable = `CREATE TABLE IF NOT EXISTS 
+  const createPartyTableQuery = `CREATE TABLE IF NOT EXISTS 
         party_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
@@ -33,7 +33,7 @@ const createTables = () => {
             created_at TIMESTAMP
         )`;
 
-  const officeTable = `CREATE TABLE IF NOT EXISTS
+  const createOfficeTableQuery = `CREATE TABLE IF NOT EXISTS
         office_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             type VARCHAR(255) NOT NULL,
@@ -42,7 +42,7 @@ const createTables = () => {
             contact VARCHAR(255) NOT NULL,
             created_at TIMESTAMP
         )`;
-  const petitionTable = `CREATE TABLE IF NOT EXISTS 
+  const createPetitionTableQuery = `CREATE TABLE IF NOT EXISTS 
         petition_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             createdBy INTEGER NOT NULL,
@@ -51,7 +51,7 @@ const createTables = () => {
             createdOn TIMESTAMP
         )`;
 
-  const voteTable = `CREATE TABLE IF NOT EXISTS 
+  const createVoteTableQuery = `CREATE TABLE IF NOT EXISTS 
         vote_tb (
             id SERIAL NOT NULL,
             voter INTEGER NOT NULL,
@@ -61,7 +61,7 @@ const createTables = () => {
             PRIMARY KEY (office, voter)
         )`;
 
-  const candidateTable = ` CREATE TABLE IF NOT EXISTS 
+  const createCandidateTableQuery = ` CREATE TABLE IF NOT EXISTS 
         candidate_tb (
             id SERIAL NOT NULL,
             office INTEGER NOT NULL,
@@ -70,12 +70,12 @@ const createTables = () => {
             PRIMARY KEY (candidate, office)
         )`;
 
-  pool.query(userTable);
-  pool.query(partyTable);
-  pool.query(officeTable);
-  pool.query(petitionTable);
-  pool.query(voteTable);
-  pool.query(candidateTable);
+  pool.query(createUserTableQuery);
+  pool.query(createPartyTableQuery);
+  pool.query(createOfficeTableQuery);
+  pool.query(createPetitionTableQuery);
+  pool.query(createVoteTableQuery);
+  pool.query(createCandidateTableQuery);
   pool.end();
 };
 
