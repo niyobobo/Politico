@@ -30,7 +30,7 @@ const userController = {
         try {
             const { rowCount, rows } = await executor.query(queries.userLogin, [email]);
             if (rowCount === 0) {
-                return res.status(400).send({
+                return res.status(404).send({
                     status: res.statusCode,
                     error: 'No user found for provided information',
                 });

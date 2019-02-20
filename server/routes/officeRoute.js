@@ -1,10 +1,11 @@
 import express from 'express';
-import officeController from '../controllers/officeController';
+import auth from '../Middleware/auth'
+import office from '../controllers/officeController';
 
 const route = express.Router();
 
-route.post('/api/v1/offices/', officeController.createPoliticalOffice);
-route.get('/api/v1/offices/', officeController.getAllPoliticalOffices);
-route.get('/api/v1/offices/:id', officeController.getSpecificPoliticalOffice);
+route.post('/api/v1/offices/', auth.verifyToken, office.createPoliticalOffice);
+route.get('/api/v1/offices/', auth.verifyToken, office.getAllPoliticalOffices);
+route.get('/api/v1/offices/:id', auth.verifyToken, office.getSpecificPoliticalOffice);
 
 export default route;
