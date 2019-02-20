@@ -3,8 +3,7 @@ import userController from '../controllers/userController';
 
 const route = express.Router();
 
-route.post('/auth/signup', userController.userCreateAccount);
-route.post('/auth/login', userController.userLogin);
-route.post('/auth/reset', userController.userResetPassword);
+route.post('/api/v1/auth/signup', userController.userCreateAccount);
+route.post('/api/v1/auth/login', userController.userLogin);
 
 export default route;

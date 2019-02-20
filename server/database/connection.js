@@ -7,7 +7,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 pool.on('connect', () => console.log('Connected to database'));
 
 const createTables = () => {
-  const userTable = `CREATE TABLE IF NOT EXISTS 
+  const createUserTableQuery = `CREATE TABLE IF NOT EXISTS 
         user_info (
             id SERIAL NOT NULL PRIMARY KEY,
             firstname VARCHAR(255) NOT NULL,
@@ -18,11 +18,10 @@ const createTables = () => {
             passportUrl VARCHAR(511) NOT NULL,
             isAdmin BOOLEAN NOT NULL,
             password VARCHAR(255) NOT NULL,
-            token VARCHAR(1023) NOT NULL,
             created_at TIMESTAMP
         )`;
 
-  const partyTable = `CREATE TABLE IF NOT EXISTS 
+  const createPartyTableQuery = `CREATE TABLE IF NOT EXISTS 
         party_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
@@ -34,7 +33,7 @@ const createTables = () => {
             created_at TIMESTAMP
         )`;
 
-  const officeTable = `CREATE TABLE IF NOT EXISTS
+  const createOfficeTableQuery = `CREATE TABLE IF NOT EXISTS
         office_tb (
             id SERIAL NOT NULL PRIMARY KEY,
             type VARCHAR(255) NOT NULL,
@@ -43,51 +42,46 @@ const createTables = () => {
             contact VARCHAR(255) NOT NULL,
             created_at TIMESTAMP
         )`;
-  const petitionTable = `CREATE TABLE IF NOT EXISTS 
+  const createPetitionTableQuery = `CREATE TABLE IF NOT EXISTS 
         petition_tb (
             id SERIAL NOT NULL PRIMARY KEY,
-            createdBy INT NOT NULL,
-            office INT NOT NULL,
+            createdBy INTEGER NOT NULL,
+            office INTEGER NOT NULL,
             body VARCHAR(511) NOT NULL,
-            createdOn TIMESTAMP,
-            FOREIGN KEY (createdBy) REFERENCES user_info (id) ON DELETE CASCADE,
-            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE
+            createdOn TIMESTAMP
         )`;
 
-  const voteTable = `CREATE TABLE IF NOT EXISTS 
+  const createVoteTableQuery = `CREATE TABLE IF NOT EXISTS 
         vote_tb (
-            id SERIAL NOT NULL PRIMARY KEY,
-            createdBy INT NOT NULL,
-            office INT NOT NULL,
-            candidate VARCHAR(255) NOT NULL,
+            id SERIAL NOT NULL,
+            voter INTEGER NOT NULL,
+            office INTEGER NOT NULL,
+            candidate INTEGER NOT NULL,
             createdOn TIMESTAMP,
-            FOREIGN KEY (createdBy) REFERENCES user_info (id) ON DELETE CASCADE,
-            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE
+            PRIMARY KEY (office, voter)
         )`;
 
-  const candidateTable = ` CREATE TABLE IF NOT EXISTS 
+  const createCandidateTableQuery = ` CREATE TABLE IF NOT EXISTS 
         candidate_tb (
-            id SERIAL NOT NULL PRIMARY KEY,
-            office INT NOT NULL,
-            party INT NOT NULL,
-            candidate INT NOT NULL,
-            FOREIGN KEY (office) REFERENCES office_tb (id) ON DELETE CASCADE,
-            FOREIGN KEY (party) REFERENCES party_tb (id) ON DELETE CASCADE,
-            FOREIGN KEY (candidate) REFERENCES user_info (id) ON DELETE CASCADE
+            id SERIAL NOT NULL,
+            office INTEGER NOT NULL,
+            party INTEGER NOT NULL,
+            candidate INTEGER NOT NULL,
+            PRIMARY KEY (candidate, office)
         )`;
 
-  pool.query(userTable);
-  pool.query(partyTable);
-  pool.query(officeTable);
-  pool.query(petitionTable);
-  pool.query(voteTable);
-  pool.query(candidateTable);
+  pool.query(createUserTableQuery);
+  pool.query(createPartyTableQuery);
+  pool.query(createOfficeTableQuery);
+  pool.query(createPetitionTableQuery);
+  pool.query(createVoteTableQuery);
+  pool.query(createCandidateTableQuery);
   pool.end();
 };
 
 const dropTables = () => {
   const dropingTable = `DROP TABLE IF EXISTS 
-                        user_info, office, party, petition, vote, candidate`;
+                        user_info, office_tb, party_tb, petition_tb, vote_tb, candidate_tb`;
   pool.query(dropingTable)
     .then((res) => {
       console.log(res);

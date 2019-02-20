@@ -1,12 +1,13 @@
 import express from 'express';
-import partyController from '../controllers/partyController';
+import auth from '../Middleware/auth'
+import party from '../controllers/partyController';
 
 const route = express.Router();
 
-route.post('/api/v1/parties/', partyController.createPoliticalParty);
-route.get('/api/v1/parties/', partyController.getAllPoliticalParty);
-route.get('/api/v1/parties/:id', partyController.getSinglePoliticalParty);
-route.patch('/api/v1/parties/:id/name', partyController.editPoliticalParty);
-route.delete('/api/v1/parties/:id', partyController.deletePoliticalParty);
+route.post('/api/v1/parties/', auth.verifyToken, party.createPoliticalParty);
+route.get('/api/v1/parties/', auth.verifyToken, party.getAllPoliticalParty);
+route.get('/api/v1/parties/:id', auth.verifyToken, party.getSinglePoliticalParty);
+route.patch('/api/v1/parties/:id/name', auth.verifyToken, party.editPoliticalParty);
+route.delete('/api/v1/parties/:id', auth.verifyToken, party.deletePoliticalParty);
 
 export default route;
