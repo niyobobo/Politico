@@ -58,15 +58,18 @@ const politicalParty = {
     }
 
     try {
-      const resulst = await executor.query(queries.createParty, party);
-      if (resulst.rowCount === 1) {
+      const result = await executor.query(queries.createParty, party);
+      if (result.rowCount === 1) {
         return res.status(201).send({
           status: res.statusCode,
-          data: resulst.rows,
+          data: result.rows,
         });
       }
     } catch (e) {
-      console.log(e);
+      return res.status(400).send({
+        status: res.statusCode,
+        error: e
+      });
     }
   },
 
@@ -77,7 +80,7 @@ const politicalParty = {
         status: res.statusCode,
         data: rows,       
       });
-    } catch (e) {
+    } catch (err) {
       return res.status(500).send({
         status: res.statusCode,
         data: err,
