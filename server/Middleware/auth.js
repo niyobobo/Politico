@@ -6,9 +6,9 @@ const Auth = {
     async verifyToken(req, res, next) {
         const token = req.headers['access-token'];
         if (!token) {
-            return res.status(400).send({
+            return res.status(401).send({
                 status: res.statusCode,
-                error: 'Token is not provided'
+                error: 'Unauthorized, token did not provided'
             });
         }
 
