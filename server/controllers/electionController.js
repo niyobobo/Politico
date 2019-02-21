@@ -6,8 +6,9 @@ import executor from '../database/queryExecutor';
 const candidate = {
 
     async registerCandidate (req, res) {
-        const { userId, officeId, partyId } = req.body;
+        const { userId, partyId } = req.body;
         const { id } = req.user;
+        const officeId  = req.params.id;
 
         try {
             const { rows } = await executor.query(queries.getUserById, [id]);
@@ -24,9 +25,15 @@ const candidate = {
             });
         }
 
+        if (!Number(officeId)) {
+            return res.status(400).send({
+              status: res.statusCode,
+              error: 'Office Id should be an integer',
+            });
+        }
+
         const schema= joi.object().keys({
             userId: joi.number().required(),
-            officeId: joi.number().required(),
             partyId: joi.number().required()
         });
         const validation = joi.validate(req.body, schema, ({ abortEarly : false}));
@@ -45,10 +52,17 @@ const candidate = {
         try {            
             const candidate = [officeId, partyId, userId];
             const response = await executor.query(queries.registerCandidate, candidate);
-            return res.status(200).send({
-                status: res.statusCode,
-                data: response.rows
-            });
+            if(response.rowCount===1){
+                return res.status(200).send({
+                    status: res.statusCode,
+                    data: response.rows
+                });
+            }else{
+                return res.status(400).send({
+                    status: res.statusCode,
+                    data: response.detail
+                });
+            }
 
         } catch (error) {
             return res.status(400).send({
@@ -81,10 +95,17 @@ const candidate = {
         try {            
             const candidate = [id, officeId, candidateId, moment(new Date())];
             const response = await executor.query(queries.makeVote, candidate);
-            return res.status(200).send({
-                status: res.statusCode,
-                data: response.rows
-            });
+            if(response.rowCount===1){
+                return res.status(200).send({
+                    status: res.statusCode,
+                    data: response.rows
+                });
+            }else{
+                return res.status(400).send({
+                    status: res.statusCode,
+                    data: response.detail
+                });
+            }
 
         } catch (error) {
             return res.status(400).send({
