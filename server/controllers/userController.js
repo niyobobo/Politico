@@ -32,13 +32,14 @@ const userController = {
             if (rowCount === 0) {
                 return res.status(404).send({
                     status: res.statusCode,
-                    error: 'No user found for provided information',
+                    error: 'No user found for this credentials',
                 });
             }
 
             if(Helper.comparePassword(rows[0].password, password)){
                 const user_token= Helper.generateToken(rows[0].id);
                 const user_data = rows[0];
+                delete user_data.password;
                 return res.status(200).send({
                     status: res.statusCode,
                     data: [{
@@ -73,12 +74,12 @@ const userController = {
         } = req.body;
 
         const schema = joi.object().keys({
-            firstname: joi.string().min(3).required(),
-            lastname: joi.string().min(3).required(),
-            othername: joi.string().min(3).required(),
-            email: joi.string().email().min(3).required(),
-            phoneNumber: joi.string().min(3).required(),
-            passportUrl: joi.string().min(3).required(),
+            firstname: joi.string().trim().required(),
+            lastname: joi.string().trim().required(),
+            othername: joi.string().trim().required(),
+            email: joi.string().email().trim().required(),
+            phoneNumber: joi.string().trim().required(),
+            passportUrl: joi.string().trim().required(),
             password: joi.string().min(6).required(),
             isAdmin: joi.boolean().required(),
         });
@@ -126,6 +127,7 @@ const userController = {
             if (result.rowCount === 1) {
                 const user_token= Helper.generateToken(result.rows[0].id);
                 const user_data = result.rows[0];
+                delete user_data.password;
                 return res.status(201).send({
                     status: res.statusCode,
                     data: [{

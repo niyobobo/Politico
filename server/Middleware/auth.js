@@ -8,7 +8,7 @@ const Auth = {
         if (!token) {
             return res.status(401).send({
                 status: res.statusCode,
-                error: 'Unauthorized, token did not provided'
+                error: 'Unauthorized, No token provided'
             });
         }
 
