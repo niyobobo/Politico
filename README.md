@@ -41,7 +41,7 @@ When you need to test the application and view test coverate run:
 
 * POST `/api/v1/auth/signup` Creating account.
 * POST `/api/v1/auth/login` Sign in.
-* PATCH `/api/v1/office/<id>/register` ​ Register a user as a candidate running for a ​ political office​.
+* POST `/api/v1/office/<id>/register` ​ Register a user as a candidate running for a ​ political office​.
 * GET `/api/v1/office/<id>/result` Fetch the result of specific office following a concluded election.
 * POST `/api/v1/votes` Vote for a ​ candidate.
 * POST `/api/v1/petitions` Create ​ petitions ​ challenging the outcome of a concluded election.
