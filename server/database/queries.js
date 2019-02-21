@@ -99,7 +99,6 @@ const seedUserQuery = `INSERT INTO user_info (firstname, lastname, othername, em
 
 const dropingTables = `DROP TABLE IF EXISTS 
                       user_info, office_tb, party_tb, petition_tb, vote_tb, candidate_tb`;
-  
 
 export default {
   createParty,
