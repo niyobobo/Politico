@@ -7,7 +7,7 @@ body {
 }
 
 button {
-    min-width: 80px;
+    min-width: 50px;
     font-weight: bolder;
     cursor: pointer;
     padding: 15px 15px;
@@ -264,5 +264,11 @@ label.content{
 
     .side-nav {
         width: 0px;
+    }
+
+    button {
+        display: inline-block;
+        margin: 0px;
+        min-width: 100px;
     }
 }
