@@ -10,7 +10,7 @@ const pool = new Pool({
 export default {
   async query(query, params) {
     return await pool.query(query, params)
-        .then((res) => res)
-        .catch((err) => err);
+      .then((res) => res)
+      .catch((err) => err);
   },
 };

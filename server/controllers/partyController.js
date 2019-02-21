@@ -14,14 +14,22 @@ const politicalParty = {
       contact,
       website,
     } = req.body;
+    const { isAdmin } = req.user;    
+
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
 
     const schema = joi.object().keys({
-      name: joi.string().min(3).max(50).required(),
-      hqAddress: joi.string().min(3).max(50).required(),
-      logoUrl: joi.string().min(3).max(500).required(),
-      representative: joi.string().min(3).max(50).required(),
+      name: joi.string().trim().max(50).required(),
+      hqAddress: joi.string().trim().max(50).required(),
+      logoUrl: joi.string().trim().max(500).required(),
+      representative: joi.string().trim().max(50).required(),
       contact: joi.string().regex(/^(07)(\d{8})/).length(10).required(),
-      website: joi.string().min(3).max(50).required(),
+      website: joi.string().trim().max(50).required(),
     });
 
     const validation = joi.validate(req.body, schema, {
@@ -103,7 +111,7 @@ const politicalParty = {
       if (rowCount === 0) {
         return res.status(404).send({
           status: res.statusCode,
-          error: 'No information found for provided id',
+          error: 'Party not found',
         });
       }
       return res.status(200).send({
@@ -121,7 +129,15 @@ const politicalParty = {
   async editPoliticalParty(req, res){
     const { id } = req.params;
     const { name } = req.body;
+    const { isAdmin } = req.user;    
 
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
+    
     if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
@@ -152,7 +168,7 @@ const politicalParty = {
       if (rowCount === 0) {
         return res.status(404).send({
           status: res.statusCode,
-          error: 'No information found for provided id',
+          error: 'Party you are trying to UPDATE is not exist',
         });
       }
       const { rows } = await executor.query(queries.updateParty, [id, name]);
@@ -170,7 +186,15 @@ const politicalParty = {
 
   async deletePoliticalParty(req, res){
     const { id } = req.params;
+    const { isAdmin } = req.user;    
 
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
+    
     if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
@@ -183,7 +207,7 @@ const politicalParty = {
       if (rowCount === 0) {
         return res.status(404).send({
           status: res.statusCode,
-          error: 'No information found for provided id',
+          error: 'No party found for provided information',
         });
       }
 

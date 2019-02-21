@@ -39,6 +39,13 @@ When you need to test the application and view test coverate run:
 * PATCH `/api/v1/parties/<id>/name` Edit a specific political party.
 * DELETE `/api/v1/parties/<id>` Delete a particular party.
 
+* POST `/api/v1/auth/signup` Creating account.
+* POST `/api/v1/auth/login` Sign in.
+* PATCH `/api/v1/office/<id>/register` ​ Register a user as a candidate running for a ​ political office​.
+* DELETE `/api/v1/office/<id>/result` Fetch the result of specific office following a concluded election.
+* DELETE `/api/v1/votes` Vote for a ​ candidate.
+* DELETE `/api/v1/petitions` Create ​ petitions ​ challenging the outcome of a concluded election.
+
 # Heroku
 
 Access link :[Visit the link](https://agile-citadel-73624.herokuapp.com/). You can test the above API using this Heroku URL `https://agile-citadel-73624.herokuapp.com/` with the above mentioned end point.

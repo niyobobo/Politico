@@ -10,8 +10,8 @@ const Helper = {
     return bcrypt.compareSync(password, hashPassword);
   },
 
-  generateToken(user_id) {
-    const token = jwt.sign({ id: user_id }, process.env.JWT_SECRET);
+  generateToken(_id, _isAdmin) {
+    const token = jwt.sign({ id:_id, isAdmin:_isAdmin }, process.env.JWT_SECRET);
     return token;
   },
 };

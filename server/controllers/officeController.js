@@ -12,11 +12,19 @@ const PoliticalOffice = {
       location,
       contact,
     } = req.body;
+    const { isAdmin } = req.user;    
 
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
+    
     const schema = joi.object().keys({
-      type: joi.string().min(3).required(),
-      name: joi.string().min(3).required(),
-      location: joi.string().min(3).max(50).required(),
+      type: joi.string().trim().required(),
+      name: joi.string().trim().required(),
+      location: joi.string().trim().max(50).required(),
       contact: joi.string().regex(/^(07)(\d{8})/).length(10).required(),
     });
 

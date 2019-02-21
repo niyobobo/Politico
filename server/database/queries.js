@@ -14,11 +14,11 @@ const createOffice = `INSERT INTO office_tb(type, name, location, contact, creat
                       VALUES ($1, $2, $3, $4, $5)
                       RETURNING *`;
 
-const userLogin = 'SELECT * FROM user_info WHERE email= $1';
+const userLogin = `SELECT * FROM user_info WHERE email= $1`;
 const getUserById = 'SELECT * FROM user_info WHERE id = $1';
 const createAccount = `INSERT INTO user_info (firstname, lastname, othername, email, phoneNumber, passportUrl, password, isAdmin, created_at)
                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-                        RETURNING *`;
+                        RETURNING id, firstname, lastname, othername, email, phoneNumber, passportUrl, isAdmin, created_at`;
 
 const registerCandidate = `INSERT INTO candidate_tb (office, party, candidate)
                         VALUES ($1, $2, $3) RETURNING *`;
@@ -26,6 +26,8 @@ const makeVote = `INSERT INTO vote_tb (voter, office, candidate, createdOn)
                   VALUES ($1, $2, $3, $4) RETURNING *`;
 const voteDecision = `SELECT office,  candidate, CAST(COUNT(*)AS Int) AS result 
                       FROM vote_tb WHERE office = $1 GROUP BY candidate, office`;
+const makePetition = `INSERT INTO petition_tb (createdby, office, body, evidence, createdon)
+                        VALUES ($1, $2, $3, $4, $5) RETURNING *`;
 
 const createUserTableQuery = `CREATE TABLE IF NOT EXISTS 
                       user_info (
@@ -64,11 +66,13 @@ const createOfficeTableQuery = `CREATE TABLE IF NOT EXISTS
                       )`;
 const createPetitionTableQuery = `CREATE TABLE IF NOT EXISTS 
                       petition_tb (
-                          id SERIAL NOT NULL PRIMARY KEY,
+                          id SERIAL NOT NULL,
                           createdBy INTEGER NOT NULL,
                           office INTEGER NOT NULL,
                           body VARCHAR(511) NOT NULL,
-                          createdOn TIMESTAMP
+                          evidence VARCHAR (1023) NOT NULL,
+                          createdOn TIMESTAMP,
+                          PRIMARY KEY (createdBy, office)
                       )`;
               
 const createVoteTableQuery = `CREATE TABLE IF NOT EXISTS 
@@ -95,7 +99,6 @@ const seedUserQuery = `INSERT INTO user_info (firstname, lastname, othername, em
 
 const dropingTables = `DROP TABLE IF EXISTS 
                       user_info, office_tb, party_tb, petition_tb, vote_tb, candidate_tb`;
-  
 
 export default {
   createParty,
@@ -117,6 +120,7 @@ export default {
   registerCandidate,
   makeVote,
   voteDecision,
+  makePetition,
 
   createUserTableQuery,
   createPartyTableQuery,
