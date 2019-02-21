@@ -16,4 +16,5 @@ services:
 before_script:
   - psql -c 'create database politico_db;' -U postgres
   - psql -c "create user politico with PASSWORD 'niyobobo';" -U postgres
-  - npm run database
+  
+after_success: npm run coverage
