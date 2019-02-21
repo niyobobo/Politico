@@ -24,7 +24,8 @@ const registerCandidate = `INSERT INTO candidate_tb (office, party, candidate)
                         VALUES ($1, $2, $3) RETURNING *`;
 const makeVote = `INSERT INTO vote_tb (voter, office, candidate, createdOn)
                   VALUES ($1, $2, $3, $4) RETURNING *`;
-const voteDecision = 'SELECT * FROM vote_tb WHERE office = $1';
+const voteDecision = `SELECT office,  candidate, CAST(COUNT(*)AS Int) AS result 
+                      FROM vote_tb WHERE office = $1 GROUP BY candidate, office`;
 
 
 export default {
