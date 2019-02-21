@@ -9,10 +9,10 @@
   },
   "scripts": {
     "database": "babel-node ./server/database/connection.js",
-    "test": "npm run database && NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
+    "test": "npm run database && NODE_ENV=test nyc --reporter=lcov --reporter=text-lcov mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
     "start": "nodemon --exec babel-node server/index.js",
     "heroku": "babel-node ./server/index.js",
-    "coverage": "nyc report --reporter=text-lcov"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Niyodusenga Jean Bosco",
   "license": "ISC",
