@@ -1,6 +1,6 @@
 import joi from 'joi';
 import moment from 'moment';
-import Helper from '../helpers/helpers';
+import Helper from '../helpers/helper';
 import queries from '../database/queries';
 import executor from '../database/queryExecutor';
 

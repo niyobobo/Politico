@@ -1,6 +1,6 @@
 import express from 'express';
 import Auth from '../Middleware/auth'
-import candidate from '../controllers/candidateController';
+import candidate from '../controllers/electionController';
 
 const Route = express.Router();
 

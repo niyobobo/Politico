@@ -1,12 +1,14 @@
 const { Pool } = require('pg');
 const env = require('dotenv');
+const moment = require('moment');
+const bcrypt= require('bcrypt');
 
 env.config();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-pool.on('connect', () => console.log('Connected to database'));
+pool.on('connect', () => console.log('Connected to database....'));
 
-const createTables = () => {
+const createTables = async () => {
   const createUserTableQuery = `CREATE TABLE IF NOT EXISTS 
         user_info (
             id SERIAL NOT NULL PRIMARY KEY,
@@ -69,28 +71,35 @@ const createTables = () => {
             candidate INTEGER NOT NULL,
             PRIMARY KEY (candidate, office)
         )`;
+const userData= [
+      'Bobo',
+      'NIYO',
+      'ynwa',
+      'admin@gmail.com',
+      '0000000000',
+      'www.go.rw',
+      bcrypt.hashSync('123456',bcrypt.genSaltSync(8)),
+      true,
+      moment(new Date())];
 
-  pool.query(createUserTableQuery);
-  pool.query(createPartyTableQuery);
-  pool.query(createOfficeTableQuery);
-  pool.query(createPetitionTableQuery);
-  pool.query(createVoteTableQuery);
-  pool.query(createCandidateTableQuery);
+const seedUserQuery = `INSERT INTO user_info (firstname, lastname, othername, email, phoneNumber, passportUrl, password, isAdmin, created_at)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
+
+  await pool.query(createUserTableQuery);
+  await pool.query(seedUserQuery,userData);
+  await pool.query(createPartyTableQuery);
+  await pool.query(createOfficeTableQuery);
+  await pool.query(createPetitionTableQuery);
+  await pool.query(createVoteTableQuery);
+  await pool.query(createCandidateTableQuery);
   pool.end();
 };
 
-const dropTables = () => {
+const dropTables = async () => {
   const dropingTable = `DROP TABLE IF EXISTS 
                         user_info, office_tb, party_tb, petition_tb, vote_tb, candidate_tb`;
-  pool.query(dropingTable)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
+  await pool.query(dropingTable);
+  pool.end();
 };
 pool.on('remove', () => process.exit(0));
 
