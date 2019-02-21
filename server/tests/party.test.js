@@ -7,6 +7,21 @@ chai.should();
 chai.use(chaihttp);
 chai.use(chaiThing);
 
+let adminToken;
+before((done) => {
+  const admin = {
+    email: 'admin@gmail.com',
+    password: '123456'
+  };
+
+  chai.request(app).post('/api/v1/auth/login')
+    .send(admin)
+    .end((err, res) => {
+      adminToken = res.body.data[0].token;
+      done();
+    });
+});
+
 describe('Political Parties end-point tests result', () => {
   it('Should POST (Create) a party', (done) => {
     const party = {
@@ -21,6 +36,7 @@ describe('Political Parties end-point tests result', () => {
     chai.request(app)
       .post('/api/v1/parties')
       .send(party)
+      .set('access-token', adminToken)
       .end((_err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('status');
@@ -39,6 +55,7 @@ describe('Political Parties end-point tests result', () => {
   it('Should GET all parties', (done) => {
     chai.request(app)
       .get('/api/v1/parties')
+      .set('access-token', adminToken)
       .end((_err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('status');
@@ -61,6 +78,7 @@ describe('Political Parties end-point tests result', () => {
 
     chai.request(app)
       .get('/api/v1/parties/' + party.id + '')
+      .set('access-token', adminToken)
       .end((_err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('status');
@@ -85,6 +103,7 @@ describe('Political Parties end-point tests result', () => {
     chai.request(app)
       .patch('/api/v1/parties/' + party.id + '/name')
       .send(name)
+      .set('access-token', adminToken)
       .end((_err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('status');
@@ -107,6 +126,7 @@ describe('Political Parties end-point tests result', () => {
 
     chai.request(app)
       .delete('/api/v1/parties/' + party.id + '')
+      .set('access-token', adminToken)
       .end((_err, res) => {
         res.body.should.be.a('object');
         res.body.should.have.property('status');

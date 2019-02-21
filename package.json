@@ -8,8 +8,7 @@
     "url": "git://github.com/niyobobo/Politico.git"
   },
   "scripts": {
-    "dropDb": "node ./server/database/connection.js dropTables",
-    "database": "npm run dropDb && node ./server/database/connection.js createTables ",
+    "database": "babel-node ./server/database/connection.js",
     "test": "npm run database && NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
     "start": "nodemon --exec babel-node server/index.js",
     "heroku": "babel-node ./server/index.js"
@@ -42,7 +41,6 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "make-runnable": "^1.3.6",
     "mocha": "^5.2.0",
     "nyc": "^13.3.0"
   }

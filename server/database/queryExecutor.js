@@ -8,11 +8,9 @@ const pool = new Pool({
 });
 
 export default {
-  query(query, params) {
-    return new Promise((resolve, rejects) => {
-      pool.query(query, params)
-        .then((res) => { resolve(res); })
-        .catch((err) => { rejects(err); });
-    });
+  async query(query, params) {
+    return await pool.query(query, params)
+        .then((res) => res)
+        .catch((err) => err);
   },
 };
