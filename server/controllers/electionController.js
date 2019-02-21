@@ -7,23 +7,15 @@ const candidate = {
 
     async registerCandidate (req, res) {
         const { userId, partyId } = req.body;
-        const { id } = req.user;
+        const { isAdmin } = req.user;
         const officeId  = req.params.id;
 
-        try {
-            const { rows } = await executor.query(queries.getUserById, [id]);
-            if(!rows[0].isadmin){
-                return res.status(401).send({
-                    status: res.statusCode,
-                    error: 'Unauthorized',
-                });
-            }
-        } catch (error) {
-            return res.status(400).send({
-                status: res.statusCode,
-                error: error
+        if(!isAdmin){
+            return res.status(401).send({
+              status: res.statusCode,
+              error: 'Unauthorized, Only Admin can access this end-point',
             });
-        }
+          }
 
         if (!Number(officeId)) {
             return res.status(400).send({
@@ -142,7 +134,6 @@ const candidate = {
     async userPetition(req, res){
         const { office, body, evidence } = req.body;
         const { id } = req.user;
-
         const schema= joi.object().keys({
             office: joi.number().required(),
             body: joi.string().trim().required(),

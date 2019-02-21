@@ -13,15 +13,15 @@ const Auth = {
         }
 
         try {
-            const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-            const { rows } = await executor.query(db.getUserById, [decoded.id]);
+            const user = await jwt.verify(token, process.env.JWT_SECRET);
+            const { rows } = await executor.query(db.getUserById, [user.id]);
             if (!rows[0]) {
                 return res.status(400).send({
                     status: res.statusCode,
                     error: 'Token expired'
                 });
             }
-            req.user = { id: decoded.id }
+            req.user = { id: user.id, isAdmin: user.isAdmin }
             next();
         } catch (error) {
             return res.status(400).send({

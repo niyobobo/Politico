@@ -14,6 +14,14 @@ const politicalParty = {
       contact,
       website,
     } = req.body;
+    const { isAdmin } = req.user;    
+
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
 
     const schema = joi.object().keys({
       name: joi.string().trim().max(50).required(),
@@ -121,7 +129,15 @@ const politicalParty = {
   async editPoliticalParty(req, res){
     const { id } = req.params;
     const { name } = req.body;
+    const { isAdmin } = req.user;    
 
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
+    
     if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,
@@ -170,7 +186,15 @@ const politicalParty = {
 
   async deletePoliticalParty(req, res){
     const { id } = req.params;
+    const { isAdmin } = req.user;    
 
+    if(!isAdmin){
+      return res.status(401).send({
+        status: res.statusCode,
+        error: 'Unauthorized, Only Admin can access this end-point',
+      });
+    }
+    
     if (!parseInt(id)) {
       return res.status(400).send({
         status: res.statusCode,

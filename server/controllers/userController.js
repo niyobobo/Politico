@@ -37,7 +37,7 @@ const userController = {
             }
 
             if(Helper.comparePassword(rows[0].password, password)){
-                const user_token= Helper.generateToken(rows[0].id);
+                const user_token= Helper.generateToken(rows[0].id, rows[0].isadmin);
                 const user_data = rows[0];
                 delete user_data.password;
                 return res.status(200).send({
@@ -125,7 +125,7 @@ const userController = {
         try {
             const result = await executor.query(queries.createAccount, user);
             if (result.rowCount === 1) {
-                const user_token= Helper.generateToken(result.rows[0].id);
+                const user_token= Helper.generateToken(result.rows[0].id, rows[0].isadmin);
                 const user_data = result.rows[0];
                 delete user_data.password;
                 return res.status(201).send({
