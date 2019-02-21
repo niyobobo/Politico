@@ -8,8 +8,7 @@
     "url": "git://github.com/niyobobo/Politico.git"
   },
   "scripts": {
-    "dropDb": "node ./server/database/connection.js dropTables",
-    "database": "npm run dropDb && node ./server/database/connection.js createTables ",
+    "database": "babel-node ./server/database/connection.js",
     "test": "npm run database && NODE_ENV=test nyc --reporter=text mocha --exit --require @babel/register --require @babel/polyfill server/tests/*",
     "start": "nodemon --exec babel-node server/index.js",
     "heroku": "babel-node ./server/index.js"
