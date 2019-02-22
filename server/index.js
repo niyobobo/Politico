@@ -1,9 +1,11 @@
 import express from 'express';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
 import partyRoute from './routes/partyRoute';
 import officeRoute from './routes/officeRoute';
 import userRoute from './routes/userRoute';
 import candidateRoute from './routes/electionRoute';
+import documentation from '../swagger.json';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +13,8 @@ const PORT = process.env.PORT || 3000;
 app.use(morgan('short'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/', swaggerUi.serve, swaggerUi.setup(documentation));
 
 app.use(officeRoute);
 app.use(partyRoute);
