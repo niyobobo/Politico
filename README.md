@@ -46,7 +46,7 @@ When you need to test the application and view test coverate run:
 * POST `/api/v1/votes` Vote for a ​ candidate.
 * POST `/api/v1/petitions` Create ​ petitions ​ challenging the outcome of a concluded election.
 
-# Heroku
+# Heroku & Swagger API Documentation
 
 Access link :[Visit the link](https://agile-citadel-73624.herokuapp.com/). You can test the above API using this Heroku URL `https://agile-citadel-73624.herokuapp.com/` with the above mentioned end point.
 
