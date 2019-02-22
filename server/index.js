@@ -14,8 +14,6 @@ app.use(morgan('short'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(documentation));
-
 app.use(officeRoute);
 app.use(partyRoute);
 app.use(userRoute);
@@ -25,6 +23,8 @@ app.use('/api/v1', (req, res) => res.status(400).send({
   status: res.statusCode,
   message: 'Bad URL format. Please check your URL for error',
 }));
+
+app.use('/', swaggerUi.serve, swaggerUi.setup(documentation));
 
 if (process.env.NODE_ENV !== 'test') app.listen(PORT);
 
