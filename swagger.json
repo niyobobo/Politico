@@ -1,0 +1,297 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Politico Web Application enables citizens to give their mandate to politicians running for different government offices while building trust in the process through transparency and For another hand there are all the functionality that an administrator could need in order to control the system. Administrator can be able to make all the CRUD operation on each entity (Political party or Governement office). \nOn the user side User can show his/her vote a Politian who want to run a certain governement office. And each Politician can express his/her interest to run a certain government office",
+    "version": "1.0.0",
+    "title": "POLITICO WEB APPLICATION"
+  },
+  "host": "agile-citadel-73624.herokuapp.com",
+  "tags": [
+    {
+      "name": "Authantication"
+    },
+    {
+      "name": "Political office"
+    },
+    {
+      "name": "Political parties"
+    },
+    {
+      "name": "Election"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/v1/auth/signup": {
+      "post": {
+        "tags": [
+          "Authantication"
+        ],
+        "summary": "Creating an account",
+        "responses": {
+          "201": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Authantication"
+        ],
+        "summary": " user signin.",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/offices": {
+      "post": {
+        "tags": [
+          "Political office"
+        ],
+        "summary": "Creating a political office.",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Political office"
+        ],
+        "summary": "Retreiving all political offices",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/offices/{id}'": {
+      "get": {
+        "tags": [
+          "Political office"
+        ],
+        "summary": "Getting a political office by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "office id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/parties": {
+      "post": {
+        "tags": [
+          "Political parties"
+        ],
+        "summary": "Create a political party",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Political parties"
+        ],
+        "summary": "Get all political parties",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/parties/{id}'": {
+      "get": {
+        "tags": [
+          "Political parties"
+        ],
+        "summary": "Get a specific political party",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Political parties"
+        ],
+        "summary": "Delete a particular party",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of pet to update",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/parties/{id}/name'": {
+      "patch": {
+        "tags": [
+          "Political parties"
+        ],
+        "summary": "Get a specific political party",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/votes": {
+      "post": {
+        "tags": [
+          "Election"
+        ],
+        "summary": "Vote for a candidate.",
+        "description": "Returns a map of status codes to quantities",
+        "operationId": "getInventory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/office/{id}/register'": {
+      "post": {
+        "tags": [
+          "Election"
+        ],
+        "summary": "Register a user as a candidate running for a political office",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/petitions": {
+      "post": {
+        "tags": [
+          "Election"
+        ],
+        "summary": "Create petitions challenging the outcome of a concluded election.",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/v1/office/{id}/result'": {
+      "get": {
+        "tags": [
+          "Election"
+        ],
+        "summary": "Fetch the result of specific office following a concluded election",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "result",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Party": {
+      "type": "object"
+    },
+    "Office": {
+      "type": "object"
+    },
+    "User": {
+      "type": "object"
+    },
+    "Candidate": {
+      "type": "object"
+    },
+    "Vote": {
+      "type": "object"
+    },
+    "Petition": {
+      "type": "object"
+    }
+  }
+}

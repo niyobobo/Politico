@@ -103,7 +103,7 @@ const PoliticalOffice = {
       if (rowCount === 0) {
         return res.status(404).send({
           status: res.statusCode,
-          error: 'No information found for provided id',
+          error: 'No Office found for provided id',
         });
       }
       return res.status(200).send({
